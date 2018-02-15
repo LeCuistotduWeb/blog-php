@@ -32,7 +32,7 @@ while ($comment = $comments->fetch())
 {
 ?>
     <p><strong><?= htmlspecialchars($comment['author']); ?></strong> le <?= $comment['comment_date_fr']; ?> :
-      <br> <?= nl2br(htmlspecialchars($comment['comment'])); ?>(<a href="index.php?action=deleteComment&id=<?= $comment['id'] ?>">supprimer</a>) </p>
+      <br> <?= nl2br(htmlspecialchars($comment['comment'])); ?>(<a href="index.php?action=deleteComment&commentId=<?= $comment['id'] ?>&postId=<?= $post['id']?>">supprimer</a>) </p>
 <?php
 }
 ?>

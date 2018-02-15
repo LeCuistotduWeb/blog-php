@@ -34,7 +34,7 @@ function addComment($postId, $author, $comment)
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
-function deleteComment($id)
+function deleteComment($id, $postId)
 {
     $commentManager = new CommentManager();
 
@@ -44,6 +44,20 @@ function deleteComment($id)
         throw new Exception('Impossible de supprime le commentaire !');
     }
     else {
-        require 'Location: index.php?action=post&id=' . $id;
+        header('Location: index.php?action=post&id=' . $postId);
+    }
+}
+
+function modifyComment($id, $postId, $author, $comment)
+{
+    $commentManager = new CommentManager();
+
+    $affectedLines = $commentManager->modifyComment($id);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible de supprime le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $postId);
     }
 }

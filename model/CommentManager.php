@@ -21,7 +21,7 @@ class CommentManager
     public function deleteComment($id)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT * FROM comments WHERE id = ?');
+        $comments = $db->prepare('DELETE FROM comments WHERE id = ?');
         $affectedLines = $comments->execute(array($id));
 
         return $affectedLines;

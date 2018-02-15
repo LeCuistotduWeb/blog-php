@@ -32,8 +32,8 @@ try {
             }
         }
         elseif ($_GET['action'] == 'deleteComment') {
-            if (isset($comment['id']) && $comment['id'] > 0) {
-              deleteComment($comment['id']);
+            if (isset($_GET['commentId']) && $_GET['commentId'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
+                deleteComment($_GET['commentId'], $_GET['postId']);
             }
             else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');

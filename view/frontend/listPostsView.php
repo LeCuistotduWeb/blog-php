@@ -1,5 +1,9 @@
 <?php $title = "Billet simple pour l'Alaska | page d'accueil"; ?>
 
+<!-- header -->
+<?php require_once 'layout/header.php' ?>
+<!-- /header -->
+
 <?php ob_start(); ?>
 <div class="container">
   <!-- Main Content -->

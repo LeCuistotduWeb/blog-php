@@ -1,6 +1,9 @@
 <?php $title = htmlspecialchars($post['title']); ?>
-
 <?php ob_start(); ?>
+
+<!-- header -->
+<?php require_once 'layout/header.php' ?>
+<!-- /header -->
 
 <!-- content -->
 

@@ -23,60 +23,31 @@
 
 </head>
 
-<body>
-
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('public/img/home-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Billet simple pour l'Alaska</h1>
-            <span class="subheading">Jean - Forteroche</span>
+<body style="background-image: url(pulic/img/home-bg.jpg)">
+  <div class="container">
+    <div class="card card-login mx-auto col-lg-6 px-0 mt-5">
+      <div class="card-header">Connection administration</div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">identifiant</label>
+            <input class="form-control" type="text" placeholder="Entrer votre identifiant">
           </div>
-        </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input class="form-control" type="password" placeholder="Mot de passe">
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox"> Rester connecté</label>
+            </div>
+          </div>
+          <a class="btn btn-primary btn-block" href="index.php?action=backend">Se connecter</a>
+        </form>
       </div>
     </div>
-  </header>
-  <?= $content ?>
-  <hr>
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Jean Forteroche</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  </div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -20,6 +20,10 @@ function post()
 
     require('view/frontend/postView.php');
 }
+function login()
+{
+    require('view/frontend/loginView.php');
+}
 
 function addComment($postId, $author, $comment)
 {
@@ -52,12 +56,13 @@ function modifyComment($id, $postId, $author, $comment)
 {
     $commentManager = new CommentManager();
 
-    $affectedLines = $commentManager->modifyComment($id);
+    $affectedLines = $commentManager->modifyComment($id, $author, $comment);
 
     if ($affectedLines === false) {
-        throw new Exception('Impossible de supprime le commentaire !');
+        throw new Exception('Impossible de modifer le commentaire !');
     }
     else {
         header('Location: index.php?action=post&id=' . $postId);
     }
+    require('view/frontend/comment.php');
 }

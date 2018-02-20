@@ -4,6 +4,7 @@ require_once 'model/Autoloader.php';
 autoloader::register();
 
 require_once 'controller/frontend.php';
+require_once 'controller/backend.php';
 
 try {
     if (isset($_GET['action'])) {
@@ -17,6 +18,15 @@ try {
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+        }
+        elseif ($_GET['action'] == 'backend') {
+                backend();
+        }
+        elseif ($_GET['action'] == 'postEdit') {
+                postEdit();
+        }
+        elseif ($_GET['action'] == 'login') {
+                login();
         }
         elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -34,6 +44,14 @@ try {
         elseif ($_GET['action'] == 'deleteComment') {
             if (isset($_GET['commentId']) && $_GET['commentId'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
                 deleteComment($_GET['commentId'], $_GET['postId']);
+            }
+            else {
+                throw new Exception('Aucun identifiant de commentaire envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'modifyComment') {
+            if (isset($_GET['commentId']) && $_GET['commentId'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
+                modifyComment($_GET['commentId'], $_GET['postId']);
             }
             else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');

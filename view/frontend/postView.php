@@ -1,43 +1,77 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
+
+<!-- content -->
+
+<!-- Post Content -->
 <div class="container">
+    <article>
+        <div class="row">
+          <div class="col-lg-10 col-md-12 mx-auto">
+            <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
 
-<h1>Mon super blog !</h1>
-<p><a href="index.php" class="btn btn-primary">Retour à la liste des billets</a></p>
+            <p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
 
-<div class="news">
-    <h3><?= htmlspecialchars($post['title']) ?><em>le <?= $post['creation_date_fr'] ?></em></h3>
-    <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+            <p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+            <p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+            <p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+            <h2 class="section-heading">The Final Frontier</h2>
+
+            <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+            <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+            <blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+
+            <p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+
+            <h2 class="section-heading">Reaching for the Stars</h2>
+
+            <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+
+            <a href="#">
+              <img class="img-fluid" src="img/killer-whale - Copie.jpg" alt="">
+            </a>
+
+            <p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+
+            <p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+
+        </div>
+      </div>
+    </article>
 </div>
-
-<h4>Commentaires</h4>
-
-<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
-    <div class="form-group">
-        <label for="author">Auteur</label><br />
-        <input type="text" id="author" name="author" class="form-control"/>
+    <!-- commentaires -->
+    <div class="container">
+      <hr class="col-lg-10 col-md-12">
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <h3 class="pb-3">Commentaires :</h3>
+          <div class="comment-content comment-wrap border-bottom border-left border-dark mb-4 p-2 ">
+            <div class="comment-name"><span class="font-weight-bold">John</span> le : <span class="comment-date">22.09.2017</span></div>
+            <div class="comment-text text-justify text-sm-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam obcaecati explicabo corporis, similique debitis quo. Esse nam culpa nulla maiores, distinctio unde dicta, at quam eius excepturi omnis nemo architecto.</div>
+            <div class="pt-2 text-right"><a href="">Signaler</a></div>
+          </div>
+          <div class="comment-content comment-wrap border-bottom border-left border-dark mb-4 p-2 ">
+            <div class="comment-name"><span class="font-weight-bold">Leo</span> le : <span class="comment-date">22.09.2017</span></div>
+            <div class="comment-text text-justify text-sm-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam obcaecati explicabo corporis, similique debitis quo. Esse nam culpa nulla maiores, distinctio unde dicta, at quam eius excepturi omnis nemo architecto.</div>
+            <div class="pt-2 text-right"><a href="">Signaler</a></div>
+          </div>
+          <div class="comment-content comment-wrap border-bottom border-left border-dark mb-4 p-2 ">
+            <div class="comment-name"><span class="font-weight-bold">Tom</span> le : <span class="comment-date">22.09.2017</span></div>
+            <div class="comment-text text-justify text-sm-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam obcaecati explicabo corporis, similique debitis quo. Esse nam culpa nulla maiores, distinctio unde dicta, at quam eius excepturi omnis nemo architecto.</div>
+            <div class="pt-2 text-right"><a href="">Signaler</a></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-        <label for="comment">Commentaire</label><br />
-        <textarea id="comment" name="comment" class="form-control"></textarea>
-    </div>
-    <div>
-        <input type="submit" class="btn btn-primary"/>
-    </div>
-</form>
+    <!-- commentaires -->
+<!-- content -->
 
-<?php
-while ($comment = $comments->fetch())
-{
-?>
-    <p><strong><?= htmlspecialchars($comment['author']); ?></strong> le <?= $comment['comment_date_fr']; ?> :
-      <br> <?= nl2br(htmlspecialchars($comment['comment'])); ?>(<a href="index.php?action=deleteComment&commentId=<?= $comment['id'] ?>&postId=<?= $post['id']?>">supprimer</a>) </p>
-<?php
-}
-?>
-
-</div>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

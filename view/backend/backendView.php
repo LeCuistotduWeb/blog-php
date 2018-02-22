@@ -70,7 +70,6 @@
               <div class="col-lg-12">bonjour je suis un commentaire </div>
               <div class="pt-2 ml-3">
                 <button class="btn btn-success p-2"><i class="fa fa-check"></i></button>
-                <button class="btn btn-warning p-2"><i class="fa fa-edit"></i></button>
                 <button class="btn btn-danger p-2"><i class="fa fa-trash"></i></button>
               </div>
             </div>
@@ -80,7 +79,6 @@
               <div class="col-lg-12">bonjour je suis un commentaire </div>
               <div class="pt-2 ml-3">
                 <button class="btn btn-success p-2"><i class="fa fa-check"></i></button>
-                <button class="btn btn-warning p-2"><i class="fa fa-edit"></i></button>
                 <button class="btn btn-danger p-2"><i class="fa fa-trash"></i></button>
               </div>
             </div>

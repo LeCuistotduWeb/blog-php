@@ -136,5 +136,3 @@ ALTER TABLE `comments`
 CREATE USER 'dbuser'@'localhost';
 GRANT ALL PRIVILEGES ON *.* TO 'dbuser'@'localhost';
 FLUSH PRIVILEGES;
-
-

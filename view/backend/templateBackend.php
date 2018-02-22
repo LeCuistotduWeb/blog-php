@@ -27,16 +27,17 @@
 
   <body class="fixed-nav sticky-footer" id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="index.php?action=backend">Administration</a>
-      <div><img src="public/img/billet-simple-pour-l-alaska-logo-icon.png" alt="" width="50px"></div>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Déconnexion</a>
-          </li>
-        </ul>
+    <nav class="navbar navbar-dark bg-dark fixed-top d-flex jusify-content-center" id="mainNav">
+      <div class="nav-item">
+        <a class="navbar-brand" href="index.php?action=backend">Administration</a>
+      </div>
+      <div class="nav-item navbar-logo">
+        <img src="public/img/billet-simple-pour-l-alaska-logo-icon.png" alt="" width="50px">
+      </div>
+      <div class="nav-item">
+        <a class="nav-link text-white btn btn-logout" data-toggle="modal" data-target="#logout-modal">
+        <i class="fa fa-fw fa-sign-out"></i>Déconnexion</a>
+      </div>
       </div>
     </nav>
     <!-- /navigation -->
@@ -46,7 +47,7 @@
     <!-- Content -->
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logout-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">

@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 <!-- content -->
-<body style="background-image: url(pulic/img/home-bg.jpg)">
+<body style="background-image: url('public/img/home-bg.jpg')">
   <div class="container">
     <div class="card card-login mx-auto col-lg-6 px-0 mt-5">
       <div class="card-header">Connection administration</div>

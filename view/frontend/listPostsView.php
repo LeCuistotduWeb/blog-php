@@ -25,7 +25,7 @@
       </div>
       <hr>
       <div class="row">
-        <div class="post-preview col-md-6">
+        <article class="post-preview col-md-6">
           <a href="index.php?action=post&id=1">
             <img src="public/img/killer-whale.jpg" alt="photo d'un orque qui nage" class="post-img">
             <h2 class="post-title">
@@ -34,8 +34,8 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe fuga quidem, maxime vero a rerum. Ut voluptate, itaque, tenetur dignissimos natus minus illum accusantium cumque cupiditate quia in eos ratione.</p>
           </a>
           <p class="post-meta">Le 15 fevrier 2017</p>
-        </div>
-        <div class="post-preview col-md-6">
+        </article>
+        <article class="post-preview col-md-6">
           <a href="index.php?action=post&id=1">
             <img src="public/img/killer-whale.jpg" alt="photo d'un orque qui nage" class="post-img">
             <h2 class="post-title">
@@ -44,10 +44,10 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas culpa, pariatur omnis voluptatum nesciunt earum inventore iusto suscipit obcaecati, ipsam aut modi tempora fugiat cum doloribus ab consequatur rerum soluta.</p>
           </a>
           <p class="post-meta">Le 20 octobre 2017</p>
-        </div>
+        </article>
       </div>
       <div class="row">
-        <div class="post-preview col-md-6">
+        <article class="post-preview col-md-6">
           <a href="index.php?action=post&id=1">
             <img src="public/img/killer-whale.jpg" alt="photo d'un orque qui nage" class="post-img">
             <h2 class="post-title">
@@ -56,8 +56,8 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe fuga quidem, maxime vero a rerum. Ut voluptate, itaque, tenetur dignissimos natus minus illum accusantium cumque cupiditate quia in eos ratione.</p>
           </a>
           <p class="post-meta">Le 15 fevrier 2017</p>
-        </div>
-        <div class="post-preview col-md-6">
+        </article>
+        <article class="post-preview col-md-6">
           <a href="index.php?action=post&id=1">
             <img src="public/img/killer-whale.jpg" alt="photo d'un orque qui nage" class="post-img">
             <h2 class="post-title">
@@ -66,7 +66,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas culpa, pariatur omnis voluptatum nesciunt earum inventore iusto suscipit obcaecati, ipsam aut modi tempora fugiat cum doloribus ab consequatur rerum soluta.</p>
           </a>
           <p class="post-meta">Le 20 octobre 2017</p>
-        </div>
+        </article>
       </div>
 
       <!-- Pager -->

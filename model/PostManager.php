@@ -29,6 +29,7 @@ class PostManager
     public function getPost($postId) {
         $req = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
         $req->execute(array($postId));
+
         while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
         $post[] = new Post($donnees);
         }
@@ -41,9 +42,12 @@ class PostManager
     */
     public function getLastPost() {
 
-      $req = $this->db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 1');
+      $req = $this->db->query('SELECT id, title, content, creation_date, post_thumbnail FROM posts ORDER BY creation_date DESC LIMIT 1');
 
-      return $req;
+      while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
+      $lastPost[] = new Post($donnees);
+      }
+      return $lastPost;
     }
 
     public function getDb(){

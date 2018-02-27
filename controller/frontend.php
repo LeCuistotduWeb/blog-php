@@ -5,6 +5,7 @@ require_once 'model/Autoloader.php';
 function listPosts() {
     $postManager = new PostManager(); // Création d'un objet
     $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+    $lastPost = $postManager->getLastPost(); // Appel d'une fonction de cet objet
 
     require('view/frontend/listPostsView.php');
 }

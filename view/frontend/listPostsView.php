@@ -6,18 +6,20 @@
     <div class="container">
       <div class="row centered">
         <p>Mon dernier billet :</p>
+        <!-- dernier billet -->
+        <?php foreach ($lastPost as $donnees) { ?>
         <div class="post-preview first-post">
-          <a href="index.php?action=post&id=1">
-            <img src="public/img/killer-whale - Copie.jpg" alt="photo d'un orque qui nage" class="post-img">
+          <a href="index.php?action=post&id=<?= $donnees->id(); ?>">
+            <img src="public/img/<?= $donnees->post_thumbnail(); ?>" alt="photo d'un orque qui nage" class="post-img">
             <h2 class="post-title">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              <?= $donnees->title(); ?>
             </h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, delectus culpa quo repellat quisquam, illo magni ex est quibusdam. Veritatis eos facilis itaque eveniet iusto magnam facere pariatur vitae repellat.
-            </p>
+            <p><?= substr($donnees->content(), 0, 250);?></p>
           </a>
-          <p class="post-meta">Le 24 septembere 2018</p>
+          <p class="post-meta"><?= $donnees->creation_date(); ?></p>
         </div>
+        <?php } ?>
+        <!-- dernier billet -->
       </div>
       <hr>
       <div class="row">

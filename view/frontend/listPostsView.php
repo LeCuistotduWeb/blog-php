@@ -21,17 +21,14 @@
       </div>
       <hr>
       <div class="row">
-      <?php
-      while ($post = $posts->fetch())
-      {
-        ?>
+      <?php foreach ($posts as $post){?>
         <article class="post-preview col-md-6">
-          <a href="index.php?action=post&id=<?= $post['id']?>">
-            <img src="public/img/<?= $post['post_thumbnail']?>" alt="photo d'un orque qui nage" class="post-img">
-            <h2 class="post-title"><?= $post['title']?></h2>
-            <p><?= substr($post['content'], 0, 250)?></p>
+          <a href="index.php?action=post&id=<?= $post->id()?>">
+            <img src="public/img/<?= $post->post_thumbnail()?>" alt="photo d'un orque qui nage" class="post-img">
+            <h2 class="post-title"><?= $post->title();?></h2>
+            <p><?= substr($post->content(), 0, 250);?></p>
           </a>
-          <p class="post-meta">Le 15 fevrier 2017</p>
+          <p class="post-meta"><?= $post->creation_date_fr();?></p>
         </article>
         <?php } ?>
       </div>
@@ -43,8 +40,6 @@
       </div>
     </div>
 
-<?php $posts->closeCursor();?>
 </div>
 <?php $content = ob_get_clean(); ?>
-
 <?php require('template.php');

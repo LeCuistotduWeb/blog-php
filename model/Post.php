@@ -8,10 +8,14 @@ class Post
     private $creation_date;
     private $post_thumbnail;
 
+    public function __construct(array $donnees) {
+      $this->hydrate($donnees);
+    }
+
     /**
      * function hydrate
      */
-    public function hydrate(array $donnees) {
+    private function hydrate(array $donnees) {
       foreach ($donnees as $key => $value)
       {
         // On récupère le nom du setter correspondant à l'attribut.
@@ -27,37 +31,36 @@ class Post
     }
 
     // getters
-    public getId() { return $this->id; }
-    public getTitle() { return $this->title; }
-    public getContent() { return $this->content; }
-    public getCreationDate() { return $this->creation_date; }
-    public getPostThumbnail() { return $this->post_thumbnail; }
-
+    public function id() { return $this->id; }
+    public function title() { return $this->title; }
+    public function content() { return $this->content; }
+    public function creation_date() { return $this->creation_date; }
+    public function post_thumbnail() { return $this->post_thumbnail; }
 
     // setters
-    public setId($id) {
+    public function setId($id) {
       $id = (int) $id;
 
       if ($id > 0)
       {
-        $this->_id = $id;
+        $this->id = $id;
       }
     }
-    public setTitle($title) {
+    public function setTitle($title) {
       $title = (string) $title;
-      $this->_title = $title;
+      $this->title = $title;
     }
-    public setContent($content) {
+    public function setContent($content) {
       $content = (string) $content;
-      $this->_content = $content;
+      $this->content = $content;
     }
-    public setCreationDate($creation_date) {
+    public function setCreation_date($creation_date) {
       if (preg_match('/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/', $creation_date))
       {
-        $this->_crea = $creation_date;
+        $this->creation_date = $creation_date;
       }
     }
-    public setPostThumbnail($post_thumbnail) {
-        return $this->post_thumbnail;
+    public function setPost_thumbnail($post_thumbnail) {
+        return $this->post_thumbnail = $creation_date ;
     }
 }

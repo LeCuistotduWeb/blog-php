@@ -12,9 +12,8 @@ class User
   private $email;
 
 
-  function __construct()
-  {
-
+  public function __construct(array $donnees) {
+    $this->hydrate($donnees);
   }
 
   // getters

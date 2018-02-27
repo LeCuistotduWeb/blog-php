@@ -3,15 +3,22 @@ class PostManager
 {
     private $db;
 
+
+    public function __construct(){
+      $db = $this->getDb();
+    }
     /**
     * function getPosts
     * retourne tout les article
     */
     public function getPosts() {
-        $db = $this->getDb();
-        $req = $db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+      $posts = [];
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
 
-        return $req;
+      while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
+      $posts[] = new Post($donnees);
+    }
+      return $posts;
     }
 
     /**
@@ -20,8 +27,7 @@ class PostManager
     * @param $postid
     */
     public function getPost($postId) {
-        $db = $this->getDb();
-        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+        $req = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
         $req->execute(array($postId));
         $post = $req->fetch();
 
@@ -33,12 +39,10 @@ class PostManager
     * retourne le dernier article
     */
     public function getLastPost() {
-        $db = $this->getDb();
-        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 1');
+        $req = $this->db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 1');
 
         return $req;
     }
-
 
     public function getDb(){
       if($this->db === NULL) {

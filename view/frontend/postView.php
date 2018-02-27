@@ -1,7 +1,7 @@
+<?php ob_start(); ?>
+
 <?php foreach ($post as $donnees){?>
 <?php $title = htmlspecialchars($donnees->title()); ?>
-
-<?php ob_start(); ?>
 
 <!-- header -->
 <?php require_once 'layout/header.php' ?>

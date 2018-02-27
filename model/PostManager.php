@@ -27,10 +27,12 @@ class PostManager
     * @param $postid
     */
     public function getPost($postId) {
+        $posts = [];
         $req = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
         $req->execute(array($postId));
-        $post = $req->fetch();
-
+        while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
+        $post[] = new Post($donnees);
+        }
         return $post;
     }
 

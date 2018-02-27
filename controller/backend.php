@@ -2,12 +2,9 @@
 // Chargement de l'autoloader
 require_once 'model/Autoloader.php';
 
-function backend()
-{
+function backend() {
     require('view/backend/backendView.php');
 }
-
-function postedit()
-{
+function postedit() {
     require('view/backend/postEditView.php');
 }

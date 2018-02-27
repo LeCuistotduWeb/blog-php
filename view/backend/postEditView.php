@@ -12,6 +12,11 @@
         </div>
 
         <div class="form-group">
+          <label for="contntBillet">Image mise en avant : </label>
+          <input type="file" name="post_thumb" class="form-control">
+        </div>
+
+        <div class="form-group">
           <label for="contntBillet">Contenu : </label>
           <textarea class="form-control tinymce" id="contntBillet" rows="10"></textarea>
         </div>

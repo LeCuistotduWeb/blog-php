@@ -1,9 +1,5 @@
 <?php $title = "Billet simple pour l'Alaska | page d'accueil"; ?>
 
-<!-- header -->
-<?php require_once 'layout/header.php' ?>
-<!-- /header -->
-
 <?php ob_start(); ?>
 <div class="container">
   <!-- Main Content -->
@@ -25,48 +21,19 @@
       </div>
       <hr>
       <div class="row">
+      <?php
+      while ($post = $posts->fetch())
+      {
+        ?>
         <article class="post-preview col-md-6">
-          <a href="index.php?action=post&id=1">
-            <img src="public/img/killer-whale.jpg" alt="photo d'un orque qui nage" class="post-img">
-            <h2 class="post-title">
-                  Science has not yet mastered prophecy
-                </h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe fuga quidem, maxime vero a rerum. Ut voluptate, itaque, tenetur dignissimos natus minus illum accusantium cumque cupiditate quia in eos ratione.</p>
+          <a href="index.php?action=post&id=<?= $post['id']?>">
+            <img src="public/img/<?= $post['post_thumbnail']?>" alt="photo d'un orque qui nage" class="post-img">
+            <h2 class="post-title"><?= $post['title']?></h2>
+            <p><?= substr($post['content'], 0, 250)?></p>
           </a>
           <p class="post-meta">Le 15 fevrier 2017</p>
         </article>
-        <article class="post-preview col-md-6">
-          <a href="index.php?action=post&id=1">
-            <img src="public/img/killer-whale.jpg" alt="photo d'un orque qui nage" class="post-img">
-            <h2 class="post-title">
-                  Failure is not an option
-                </h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas culpa, pariatur omnis voluptatum nesciunt earum inventore iusto suscipit obcaecati, ipsam aut modi tempora fugiat cum doloribus ab consequatur rerum soluta.</p>
-          </a>
-          <p class="post-meta">Le 20 octobre 2017</p>
-        </article>
-      </div>
-      <div class="row">
-        <article class="post-preview col-md-6">
-          <a href="index.php?action=post&id=1">
-            <img src="public/img/killer-whale.jpg" alt="photo d'un orque qui nage" class="post-img">
-            <h2 class="post-title">
-                  Science has not yet mastered prophecy
-                </h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe fuga quidem, maxime vero a rerum. Ut voluptate, itaque, tenetur dignissimos natus minus illum accusantium cumque cupiditate quia in eos ratione.</p>
-          </a>
-          <p class="post-meta">Le 15 fevrier 2017</p>
-        </article>
-        <article class="post-preview col-md-6">
-          <a href="index.php?action=post&id=1">
-            <img src="public/img/killer-whale.jpg" alt="photo d'un orque qui nage" class="post-img">
-            <h2 class="post-title">
-                  Failure is not an option
-                </h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas culpa, pariatur omnis voluptatum nesciunt earum inventore iusto suscipit obcaecati, ipsam aut modi tempora fugiat cum doloribus ab consequatur rerum soluta.</p>
-          </a>
-          <p class="post-meta">Le 20 octobre 2017</p>
-        </article>
+        <?php } ?>
       </div>
 
       <!-- Pager -->

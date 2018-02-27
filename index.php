@@ -1,7 +1,9 @@
 <?php
+require_once 'config.php';
 // Chargement de l'autoloader
 require_once 'model/Autoloader.php';
-autoloader::register();
+Autoloader::register();
+
 
 require_once 'controller/frontend.php';
 require_once 'controller/backend.php';
@@ -57,10 +59,9 @@ try {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
             }
         }
-    }
-    else {
-        listPosts();
-    }
+        else { listPosts(); }
+      }
+    else { listPosts(); }
 }
 catch(Exception $e) {
     echo 'Erreur : ' . $e->getMessage();

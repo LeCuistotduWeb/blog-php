@@ -2,16 +2,13 @@
 // Chargement de l'autoloader
 require_once 'model/Autoloader.php';
 
-function listPosts()
-{
+function listPosts() {
     $postManager = new PostManager(); // Création d'un objet
     $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
     require('view/frontend/listPostsView.php');
 }
-
-function post()
-{
+function post() {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
@@ -20,13 +17,10 @@ function post()
 
     require('view/frontend/postView.php');
 }
-function login()
-{
-    require('view/frontend/loginView.php');
+function login() {
+  require('view/frontend/loginView.php');
 }
-
-function addComment($postId, $author, $comment)
-{
+function addComment($postId, $author, $comment) {
     $commentManager = new CommentManager();
 
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
@@ -38,8 +32,7 @@ function addComment($postId, $author, $comment)
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
-function deleteComment($id, $postId)
-{
+function deleteComment($id, $postId) {
     $commentManager = new CommentManager();
 
     $affectedLines = $commentManager->deleteComment($id);
@@ -51,9 +44,7 @@ function deleteComment($id, $postId)
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
-
-function modifyComment($id, $postId, $author, $comment)
-{
+function modifyComment($id, $postId, $author, $comment) {
     $commentManager = new CommentManager();
 
     $affectedLines = $commentManager->modifyComment($id, $author, $comment);

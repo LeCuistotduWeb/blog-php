@@ -1,5 +1,4 @@
 <?php $title = htmlspecialchars($post['title']); ?>
-<?php $content = htmlspecialchars($post['content']); ?>
 
 <?php ob_start(); ?>
 
@@ -14,6 +13,10 @@
     <article>
         <div class="row">
           <div class="col-lg-10 col-md-12 mx-auto">
+            <!-- post title -->
+            <h1><?= $post['title'] ?></h1>
+            <!-- post title -->
+
             <!-- content -->
             <?= $post['content'] ?>
             <!-- content -->
@@ -46,31 +49,27 @@
       </div>
       <!-- laisser commentaire -->
 
-      <!-- commentaires -->
+
+      <!-- liste commentaires -->
       <div class="row">
         <div class="col-lg-10 col-md-12 mx-auto">
           <h3 class="pb-3">Commentaires :</h3>
 
-          <div class="comment-content comment-wrap border-bottom border-left border-dark mb-4 p-2 ">
-            <div class="comment-name"><span class="font-weight-bold">John</span> le : <span class="comment-date">22.09.2017</span></div>
-            <div class="comment-text text-justify text-sm-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam obcaecati explicabo corporis, similique debitis quo. Esse nam culpa nulla maiores, distinctio unde dicta, at quam eius excepturi omnis nemo architecto.</div>
-            <div class="pt-2 text-right"><a href="">Signaler</a></div>
-          </div>
+          <?php while ($comment = $comments->fetch()) { ?>
 
+          <!-- commentaire -->
           <div class="comment-content comment-wrap border-bottom border-left border-dark mb-4 p-2 ">
-            <div class="comment-name"><span class="font-weight-bold">Leo</span> le : <span class="comment-date">22.09.2017</span></div>
-            <div class="comment-text text-justify text-sm-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam obcaecati explicabo corporis, similique debitis quo. Esse nam culpa nulla maiores, distinctio unde dicta, at quam eius excepturi omnis nemo architecto.</div>
+            <div class="comment-name"><span class="font-weight-bold"><?= $comment['author']; ?></span> le : <span class="comment-date"><?= $comment['comment_date_fr']; ?></span></div>
+            <div class="comment-text text-justify text-sm-left"><?= $comment['comment']; ?></div>
             <div class="pt-2 text-right"><a href="">Signaler</a></div>
           </div>
-          
-          <div class="comment-content comment-wrap border-bottom border-left border-dark mb-4 p-2 ">
-            <div class="comment-name"><span class="font-weight-bold">Tom</span> le : <span class="comment-date">22.09.2017</span></div>
-            <div class="comment-text text-justify text-sm-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam obcaecati explicabo corporis, similique debitis quo. Esse nam culpa nulla maiores, distinctio unde dicta, at quam eius excepturi omnis nemo architecto.</div>
-            <div class="pt-2 text-right"><a href="">Signaler</a></div>
-          </div>
+          <!-- commentaire -->
+
+        <?php } ?>
+
         </div>
       </div>
-      <!-- commentaires -->
+      <!-- liste commentaires -->
 
     </div>
     <!-- espace commentaires -->

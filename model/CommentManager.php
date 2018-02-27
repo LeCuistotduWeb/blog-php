@@ -3,28 +3,31 @@ class CommentManager
 {
     private $db;
 
+    public function __construct(){
+      $db = $this->getDb();
+    }
+
     /**
     * function getComments
     * retourne les commentaires d'un article
     * @param $postid
     */
-    public function getComments($postId)
-    {
-        $db = $this->getDb();
-        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d.%m.%Y à %Hh %imin %ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
-        $comments->execute(array($postId));
-
-        return $comments;
+    public function getComments($postId) {
+      $comments = [];
+      $req = $this->db->prepare('SELECT id, author, comment, comment_date FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+      $req->execute(array($postId));
+      while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
+      $comments[] = new Comment($donnees);
+    }
+      return $comments;
     }
 
     /**
     * function postComment
     * ajour un commmentaire
     */
-    public function postComment($postId, $author, $comment)
-    {
-        $db = $this->getDb();
-        $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
+    public function postComment($postId, $author, $comment) {
+        $comments = $this->db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
         $affectedLines = $comments->execute(array($postId, $author, $comment));
 
         return $affectedLines;
@@ -35,10 +38,8 @@ class CommentManager
     * supprime le commentaire
     * @param $id
     */
-    public function deleteComment($id)
-    {
-        $db = $this->getDb();
-        $comments = $db->prepare('DELETE FROM comments WHERE id = ?');
+    public function deleteComment($id) {
+        $comments = $this->db->prepare('DELETE FROM comments WHERE id = ?');
         $affectedLines = $comments->execute(array($id));
 
         return $affectedLines;
@@ -49,10 +50,8 @@ class CommentManager
     * modifie le commentaire
     * @param $id
     */
-    public function modifyComment($id, $author, $comment)
-    {
-        $db = $this->getDb();
-        $comments = $db->prepare('UPDATE comments SET id=:id, author=:author, comment=:comment, comment_date=NOW() WHERE 1');
+    public function modifyComment($id, $author, $comment) {
+        $comments = $this->db->prepare('UPDATE comments SET id=:id, author=:author, comment=:comment, comment_date=NOW() WHERE 1');
         $affectedLines = $comments->execute(array($id, $author, $comment));
 
         return $affectedLines;

@@ -28,7 +28,7 @@
             <h2 class="post-title"><?= $post->title();?></h2>
             <p><?= substr($post->content(), 0, 250);?></p>
           </a>
-          <p class="post-meta"><?= $post->creation_date_fr();?></p>
+          <p class="post-meta"><?= $post->creation_date();?></p>
         </article>
         <?php } ?>
       </div>

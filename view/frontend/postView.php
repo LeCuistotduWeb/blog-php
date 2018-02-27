@@ -55,12 +55,11 @@
         <div class="col-lg-10 col-md-12 mx-auto">
           <h3 class="pb-3">Commentaires :</h3>
 
-          <?php while ($comment = $comments->fetch()) { ?>
-
+          <?php foreach ($comments as $comment){?>
           <!-- commentaire -->
           <div class="comment-content comment-wrap border-bottom border-left border-dark mb-4 p-2 ">
-            <div class="comment-name"><span class="font-weight-bold"><?= $comment['author']; ?></span> le : <span class="comment-date"><?= $comment['comment_date_fr']; ?></span></div>
-            <div class="comment-text text-justify text-sm-left"><?= $comment['comment']; ?></div>
+            <div class="comment-name"><span class="font-weight-bold"><?= $comment->author(); ?></span> le : <span class="comment-date"><?= $comment->comment_date(); ?></span></div>
+            <div class="comment-text text-justify text-sm-left"><?= $comment->comment(); ?></div>
             <div class="pt-2 text-right"><a href="">Signaler</a></div>
           </div>
           <!-- commentaire -->

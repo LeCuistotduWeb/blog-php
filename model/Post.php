@@ -61,6 +61,6 @@ class Post
       }
     }
     public function setPost_thumbnail($post_thumbnail) {
-        return $this->post_thumbnail = $creation_date ;
+      $this->post_thumbnail = $post_thumbnail ;
     }
 }

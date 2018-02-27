@@ -8,6 +8,10 @@ class Comment
     private $comment;
     private $comment_date;
 
+    public function __construct(array $donnees) {
+      $this->hydrate($donnees);
+    }
+
     /**
      * function hydrate
      * @ $données
@@ -28,14 +32,14 @@ class Comment
     }
 
     // getters
-    public getAuthor() { return $this->author; }
-    public getComment() { return $this->comment; }
-    public getId() { return $this->id; }
-    public getPost_Id() { return $this->post_id; }
-    public getComment_Date() { return $this->comment_date; }
+    public function author() { return $this->author; }
+    public function comment() { return $this->comment; }
+    public function id() { return $this->id; }
+    public function post_Id() { return $this->post_id; }
+    public function comment_Date() { return $this->comment_date; }
 
     // setters
-    public setId($id) {
+    public function setId($id) {
       $id = (int) $id;
 
       if ($id > 0)
@@ -43,7 +47,7 @@ class Comment
         $this->id = $id;
       }
     }
-    public setPost_id($postid) {
+    public function setPost_id($postid) {
       $postid = (int) $postid;
 
       if ($postid > 0)
@@ -51,11 +55,11 @@ class Comment
         $this->$postid = $postid;
       }
     }
-    public setComment($comment) {
+    public function setComment($comment) {
       $comment = (string) $comment;
       $this->comment = $comment;
     }
-    public setAuthor($author) {
+    public function setAuthor($author) {
       $author = (string) $author;
       $this->author = $author;
     }

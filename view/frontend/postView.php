@@ -33,7 +33,7 @@
         <div class="col-lg-10 col-md-12 mx-auto">
         <h3 class="mt-3">Ajouter un commentaire</h3>
 
-        <form action="index.php?action=addComment&amp;id=<?= $donnees->id()?>" method="post" class="mt-3">
+        <form action="index.php?action=addComment&id=<?= $donnees->id()?>" method="post" class="mt-3">
           <div class="form-group">
             <label for="author">Nom</label><br />
             <input type="text" id="author" name="author" class="form-control" placeholder="Entrer votre pseudo"/>

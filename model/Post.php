@@ -16,9 +16,7 @@ class Post extends Table
     public function content() { return $this->content; }
     public function creation_date() { return $this->creation_date; }
     public function post_thumbnail() { return $this->post_thumbnail; }
-    public function excerpt(){
-      return $html = '<p>' . substr($this->content, 0, 250) . '...</p>';
-    }
+    public function excerpt(){ return $html = substr($this->content, 0, 250) . '...'; }
 
     // setters
     public function setId($id) {

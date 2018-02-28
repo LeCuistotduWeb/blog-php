@@ -25,15 +25,14 @@ class CommentManager
 
     /**
     * function postComment
-    * ajour un commmentaire
+    * ajoute un commmentaire
     */
-    public function postComment($postId, $author, $comment) {
-        $comments = $this->db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-        $affectedLines = $comments->execute(array($postId, $author, $comment));
+    public function addComment($postId, $author, $comment) {
+        $req = $this->db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
+        $req->execute(array($postId, $author, $comment));
 
-        while ($donnees = $affectedLines->fetch(PDO::FETCH_ASSOC)) {
-        $affectedLines[] = new Post($donnees);
-        }
+        $donnees = $req->fetch(PDO::FETCH_ASSOC);
+        $affectedLines = new Comment($donnees);
         return $affectedLines;
     }
 

@@ -13,7 +13,7 @@ class PostManager
     */
     public function getPosts() {
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT 1, 5');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -34,12 +34,6 @@ class PostManager
         $post[] = new Post($donnees);
         }
         return $post;
-    }
-
-    public function getExtrait(){
-        $html = '<p>' . substr($this->content, 0, 100) . '...</p>';
-        $html .= '<p><a href="' . $this->getURL() . '">Voir la suite</a></p>';
-        return $html;
     }
 
     /**

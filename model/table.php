@@ -3,7 +3,7 @@
 /**
  * class table
  */
-class Table
+abstract class Table
 {
 
   public function __construct(array $donnees) {

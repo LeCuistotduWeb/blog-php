@@ -17,10 +17,10 @@ class User
   }
 
   // getters
-  public getId() { return $this->id; }
-  public getUsername() { return $this->username; }
-  public getPassword() { return $this->password; }
-  public getEmail() { return $this->email; }
+  public Id() { return $this->id; }
+  public Username() { return $this->username; }
+  public Password() { return $this->password; }
+  public Email() { return $this->email; }
 
   // setters
   public setId($id) {

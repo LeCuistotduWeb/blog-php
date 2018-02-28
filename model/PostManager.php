@@ -36,6 +36,12 @@ class PostManager
         return $post;
     }
 
+    public function getExtrait(){
+        $html = '<p>' . substr($this->content, 0, 100) . '...</p>';
+        $html .= '<p><a href="' . $this->getURL() . '">Voir la suite</a></p>';
+        return $html;
+    }
+
     /**
     * function getLastPost
     * retourne le dernier article

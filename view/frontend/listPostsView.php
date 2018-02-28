@@ -14,7 +14,7 @@
             <h2 class="post-title">
               <?= $donnees->title(); ?>
             </h2>
-            <p><?= substr($donnees->content(), 0, 250);?></p>
+            <p><?= $donnees->excerpt() ;?></p>
           </a>
           <p class="post-meta"><?= $donnees->creation_date(); ?></p>
         </div>
@@ -28,7 +28,7 @@
           <a href="index.php?action=post&id=<?= $post->id()?>">
             <img src="public/img/<?= $post->post_thumbnail()?>" alt="photo d'un orque qui nage" class="post-img">
             <h2 class="post-title"><?= $post->title();?></h2>
-            <p><?= substr($post->content(), 0, 250);?></p>
+            <p><?= $donnees->excerpt();?></p>
           </a>
           <p class="post-meta"><?= $post->creation_date();?></p>
         </article>

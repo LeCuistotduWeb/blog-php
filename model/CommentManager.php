@@ -16,6 +16,7 @@ class CommentManager
       $comments = [];
       $req = $this->db->prepare('SELECT id, author, comment, comment_date FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
       $req->execute(array($postId));
+
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $comments[] = new Comment($donnees);
     }
@@ -30,6 +31,9 @@ class CommentManager
         $comments = $this->db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
         $affectedLines = $comments->execute(array($postId, $author, $comment));
 
+        while ($donnees = $affectedLines->fetch(PDO::FETCH_ASSOC)) {
+        $affectedLines[] = new Post($donnees);
+        }
         return $affectedLines;
     }
 

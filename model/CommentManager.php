@@ -2,6 +2,7 @@
 class CommentManager
 {
     private $db;
+    private $reportNbn=[];
 
     public function __construct(){
       $db = $this->getDb();
@@ -12,9 +13,9 @@ class CommentManager
     * retourne les commentaires d'un article
     * @param $postid
     */
-    public function getComments($postId) {
+    public function comments($postId) {
       $comments = [];
-      $req = $this->db->prepare('SELECT id, author, comment, comment_date FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+      $req = $this->db->prepare('SELECT id, author, comment, comment_date FROM comments WHERE post_id = ? AND report = 0 ORDER BY comment_date DESC');
       $req->execute(array($postId));
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -24,16 +25,29 @@ class CommentManager
     }
 
     /**
+    * function reportComment
+    * compte le nombre de commentaires total
+    */
+    public function commentCount() {
+        $req = $this->db->query('SELECT COUNT(*) as commentNb FROM comments');
+        $donnees = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $donnees['commentNb'];
+    }
+
+    /**
     * function postComment
     * ajoute un commmentaire
     */
     public function addComment($postId, $author, $comment) {
-        $req = $this->db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-        $req->execute(array($postId, $author, $comment));
-
-        $donnees = $req->fetch(PDO::FETCH_ASSOC);
-        $affectedLines = new Comment($donnees);
-        return $affectedLines;
+        $newComment = [];
+        $req = $this->db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(:post_id, :author, :comment, NOW())');
+        $req->execute(array(
+          'post_id'      => $postId,
+          'author'       => $author,
+          'comment'      => $comment
+        ));
+        return $newComment;
     }
 
     /**
@@ -53,11 +67,54 @@ class CommentManager
     * modifie le commentaire
     * @param $id
     */
-    public function modifyComment($id, $author, $comment) {
-        $comments = $this->db->prepare('UPDATE comments SET id=:id, author=:author, comment=:comment, comment_date=NOW() WHERE 1');
-        $affectedLines = $comments->execute(array($id, $author, $comment));
+    public function authorizedComment($commentId) {
+        $comments = $this->db->prepare('UPDATE comments SET report=:report WHERE id=:id');
+        $affectedLines = $comments->execute(array(
+          'report' => 0,
+          'id'     => $commentId
+        ));
 
         return $affectedLines;
+    }
+
+    /**
+    * function reportList
+    * retourne la liste des commentaires signalés
+    */
+    public function reportList() {
+      $reportList = [];
+      $req = $this->db->query('SELECT id, author, comment, comment_date, report FROM comments WHERE report = true ORDER BY comment_date DESC');
+
+      while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
+      $reportList[] = new Comment($donnees);
+    }
+      return $reportList;
+    }
+
+    /**
+    * function reportComment
+    * signal le commentaire au backend
+    * @param $commentid
+    */
+    public function reportComment($commentId) {
+        $req = $this->db->prepare('UPDATE comments SET report=:report WHERE id=:id');
+        $req->execute(array(
+          'report' => true,
+          'id'     => $commentId
+        ));
+
+        return $affectedLines;
+    }
+
+    /**
+    * function reportCount
+    * compte le nombre de commentaires signalés
+    */
+    public function reportCount() {
+        $req = $this->db->query('SELECT COUNT(*) as reportNb FROM comments WHERE report=true');
+        $donnees = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $donnees['reportNb'];
     }
 
     public function getDb(){

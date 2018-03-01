@@ -5,7 +5,7 @@
   <!-- Main Content -->
     <div class="container">
       <div class="row centered">
-        <p>Mon dernier billet :</p>
+        <p class="mb-2">Mon dernier billet :</p>
         <!-- dernier billet -->
         <?php foreach ($lastPost as $donnees) { ?>
         <div class="post-preview first-post">

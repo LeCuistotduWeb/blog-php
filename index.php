@@ -1,12 +1,14 @@
 <?php
+// requires
 require_once 'config.php';
+require_once 'controller/frontend.php';
+require_once 'controller/backend.php';
+
+
 // Chargement de l'autoloader
 require_once 'model/Autoloader.php';
 Autoloader::register();
 
-
-require_once 'controller/frontend.php';
-require_once 'controller/backend.php';
 
 try {
     if (isset($_GET['action'])) {
@@ -24,8 +26,16 @@ try {
         elseif ($_GET['action'] == 'backend') {
                 backend();
         }
-        elseif ($_GET['action'] == 'postEdit') {
-                postEdit();
+        elseif ($_GET['action'] == 'editPost') {
+                editPost();
+        }
+        elseif ($_GET['action'] == 'addPost') {
+          if (!empty($_POST['title']) && !empty($_POST['content'])) {
+                addPost($_POST['title'], $_POST['content'], $_POST['post_thumbnail']);
+              }
+              else {
+                  throw new Exception('Tous les champs ne sont pas remplis !');
+              }
         }
         elseif ($_GET['action'] == 'login') {
                 login();
@@ -44,8 +54,16 @@ try {
             }
         }
         elseif ($_GET['action'] == 'deleteComment') {
-            if (isset($_GET['commentId']) && $_GET['commentId'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
-                deleteComment($_GET['commentId'], $_GET['postId']);
+            if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
+              deleteComment($_GET['commentId']);
+            }
+            else {
+                throw new Exception('Aucun identifiant de commentaire envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'authorizedComment') {
+            if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
+              authorizedComment($_GET['commentId']);
             }
             else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
@@ -54,6 +72,14 @@ try {
         elseif ($_GET['action'] == 'modifyComment') {
             if (isset($_GET['commentId']) && $_GET['commentId'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
                 modifyComment($_GET['commentId'], $_GET['postId']);
+            }
+            else {
+                throw new Exception('Aucun identifiant de commentaire envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'reportComment') {
+            if (isset($_GET['commentId']) && $_GET['commentId'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
+                reportComment($_GET['commentId'],$_GET['postId']);
             }
             else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');

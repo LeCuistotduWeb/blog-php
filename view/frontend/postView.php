@@ -1,7 +1,6 @@
 <?php ob_start(); ?>
 
-<?php foreach ($post as $donnees){?>
-<?php $title = htmlspecialchars($donnees->title()); ?>
+<?php $title = htmlspecialchars($post->title()); ?>
 
 <!-- header -->
 <?php require_once 'layout/header.php' ?>
@@ -15,11 +14,11 @@
         <div class="row">
           <div class="col-lg-10 col-md-12 mx-auto">
             <!-- post title -->
-            <h1><?= $donnees->title(); ?></h1>
+            <h1><?= $post->title(); ?></h1>
             <!-- post title -->
 
             <!-- content -->
-            <?= $donnees->content(); ?>
+            <?= $post->content(); ?>
             <!-- content -->
         </div>
       </div>
@@ -33,7 +32,7 @@
         <div class="col-lg-10 col-md-12 mx-auto">
         <h3 class="mt-3">Ajouter un commentaire</h3>
 
-        <form action="index.php?action=addComment&id=<?= $donnees->id()?>" method="post" class="mt-3">
+        <form action="index.php?action=addComment&id=<?= $post->id()?>" method="post" class="mt-3">
           <div class="form-group">
             <label for="author">Nom</label><br />
             <input type="text" id="author" name="author" class="form-control" placeholder="Entrer votre pseudo"/>
@@ -49,7 +48,6 @@
       </div>
       </div>
       <!-- laisser commentaire -->
-<?php } ?>
 
       <!-- liste commentaires -->
       <div class="row">
@@ -61,7 +59,7 @@
           <div class="comment-content comment-wrap border-bottom border-left border-dark mb-4 p-2 ">
             <div class="comment-name"><span class="font-weight-bold"><?= $comment->author(); ?></span> le : <span class="comment-date"><?= $comment->comment_date(); ?></span></div>
             <div class="comment-text text-justify text-sm-left"><?= $comment->comment(); ?></div>
-            <div class="text-right"><a href="">Signaler</a></div>
+            <div class="text-right"><a href="index.php?action=reportComment&postId=<?= $post->id();?>&commentId=<?= $comment->id(); ?>">Signaler</a></div>
           </div>
           <!-- commentaire -->
 

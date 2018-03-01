@@ -9,6 +9,7 @@ class Comment
     private $author;
     private $comment;
     private $comment_date;
+    private $report;
 
     public function __construct(array $donnees) {
       $this->hydrate($donnees);
@@ -38,6 +39,7 @@ class Comment
     public function author() { return $this->author; }
     public function comment() { return $this->comment; }
     public function comment_date() { return $this->comment_date; }
+    public function report() { return $this->report; }
 
     // setters
     public function setId($id) {
@@ -66,5 +68,11 @@ class Comment
     }
     public function setcomment_date($comment_date) {
       $this->comment_date = $comment_date;
+    }
+    public function setReport($report) {
+      $report = (BOOL) $report;
+      if ($report >= 0 && $report <= 1){
+        $this->report = $report;
+      }
     }
 }

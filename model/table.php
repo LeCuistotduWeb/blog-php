@@ -2,7 +2,7 @@
 
 /**
  * class table
- */
+*/
 abstract class Table
 {
 
@@ -12,7 +12,7 @@ abstract class Table
 
   /**
    * function hydrate
-   */
+  */
   private function hydrate(array $donnees) {
     foreach ($donnees as $key => $value)
     {

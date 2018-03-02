@@ -9,6 +9,7 @@ function listPosts() {
 
     require('view/frontend/listPostsView.php');
 }
+
 function post() {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
@@ -18,9 +19,11 @@ function post() {
 
     require('view/frontend/postView.php');
 }
+
 function login() {
   require('view/frontend/loginView.php');
 }
+
 function addComment($postId, $author, $comment) {
     $commentManager = new CommentManager();
     $newComment = $commentManager->addComment($postId, $author, $comment);
@@ -32,6 +35,7 @@ function addComment($postId, $author, $comment) {
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
+
 function modifyComment($id, $postId, $author, $comment) {
     $commentManager = new CommentManager();
 
@@ -45,6 +49,7 @@ function modifyComment($id, $postId, $author, $comment) {
     }
     require('view/frontend/comment.php');
 }
+
 function reportComment($commentId,$postId) {
   $commentManager = new CommentManager();
   $reportComment = $commentManager->reportComment($commentId);

@@ -3,7 +3,6 @@ class PostManager
 {
     private $db;
 
-
     public function __construct(){
       $db = $this->getDb();
     }
@@ -13,7 +12,7 @@ class PostManager
     */
     public function posts() {
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT 1, 5');
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT 1, 4');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -75,7 +74,10 @@ class PostManager
         ));
         return $newPost;
     }
-
+    /**
+    * function getDb
+    * connection bdd
+    */
     public function getDb(){
       if($this->db === NULL) {
         $db = new PDO('mysql:host=localhost;dbname=blog-php;charset=utf8', 'root', '');

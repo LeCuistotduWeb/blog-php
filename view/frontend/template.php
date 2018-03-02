@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title><?= $title ?></title>
+  <title><?= $title; ?></title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -22,17 +22,65 @@
 </head>
 
 <body>
+
   <!-- header -->
-  <?php require_once 'layout/header.php' ?>
+  <header class="masthead" style="background-image: url('public/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1><img src="public/img/billet-simple-pour-l-alaska-logo-icon.png" alt="billet simple pour l'alaska logo icon" width="250px"><br>
+            <?=$heading?></h1>
+            <span class="subheading"><?=$subHeading?></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
   <!-- /header -->
 
   <!-- content -->
-  <?= $content ?>
+  <?= $content;?>
   <!-- /content -->
 
   <hr>
   <!-- footer -->
-  <?= require_once 'layout/footer.php'?>
+  <footer>
+    <div class="container mb-3">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Jean Forteroche</p>
+        </div>
+      </div>
+    </div>
+  </footer>
   <!-- /footer -->
 
   <!-- Bootstrap core JavaScript -->

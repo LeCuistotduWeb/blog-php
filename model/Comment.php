@@ -66,7 +66,7 @@ class Comment
       $comment = (string) $comment;
       $this->comment = $comment;
     }
-    public function setcomment_date($comment_date) {
+    public function setComment_date($comment_date) {
       $this->comment_date = $comment_date;
     }
     public function setReport($report) {

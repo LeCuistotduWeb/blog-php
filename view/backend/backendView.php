@@ -43,7 +43,7 @@
 
 
         <div class="row">
-          <h2 class="mt-5">Billet : </h2>
+          <h2 class="mt-5">Billets : </h2>
         </div>
         <div class="row">
           <a href="index.php?action=editPost" class="btn btn-primary mt-1 col-lg-3 col-md-6 col-sm-12">Ajouter un billet</a>
@@ -72,14 +72,14 @@
         </div>
 
         <ul class="list-group mt-3 row">
-          <?php foreach ($reportList as $reportList) { ?>
-          <li class="list-group-item col-12">
+          <?php foreach ($reportList as $report) { ?>
+          <li class="list-group-item col-12 border-danger">
             <div class="post row d-flex align-items-center">
-              <div class="col-lg-12 comment-name"><?= $reportList->author(); ?> le : <span class="comment-date"><?= $reportList->comment_date(); ?></span></div>
-              <div class="col-lg-12 comment-text"><?= $reportList->comment(); ?></div>
+              <div class="col-lg-12 comment-name"><?= $report->author(); ?> le : <span class="comment-date"><?= $report->comment_date(); ?></span></div>
+              <div class="col-lg-12 comment-text"><?= $report->comment(); ?></div>
               <div class="pt-2 ml-3">
-                <button class="btn btn-success p-2"><a href="index.php?action=authorizedComment&commentId=<?= $reportList->id();?>"><i class="fa fa-check text-white"></i></a></button>
-                <button class="btn btn-danger p-2"><a href="index.php?action=deleteComment&commentId=<?= $reportList->id();?>"><i class="fa fa-trash text-white"></i></a></button>
+                <button class="btn btn-success p-2"><a href="index.php?action=authorizedComment&commentId=<?= $report->id();?>"><i class="fa fa-check text-white"></i></a></button>
+                <button class="btn btn-danger p-2"><a href="index.php?action=deleteComment&commentId=<?= $report->id();?>"><i class="fa fa-trash text-white"></i></a></button>
               </div>
             </div>
           </li>

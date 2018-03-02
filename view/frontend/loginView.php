@@ -3,9 +3,9 @@
 <?php ob_start(); ?>
 
 <!-- content -->
-<body style="background-image: url('public/img/home-bg.jpg')">
+<body>
   <div class="container">
-    <div class="card card-login mx-auto col-lg-6 px-0 mt-5">
+    <div class="card card-login mx-auto px-0">
       <div class="card-header">Connection administration</div>
       <div class="card-body">
         <form>

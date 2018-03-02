@@ -10,5 +10,5 @@ class UserManager
     $db = $this->getDb();
   }
 
-  
+
 }

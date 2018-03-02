@@ -9,7 +9,6 @@ require_once 'controller/backend.php';
 require_once 'model/Autoloader.php';
 Autoloader::register();
 
-
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
@@ -31,7 +30,7 @@ try {
         }
         elseif ($_GET['action'] == 'addPost') {
           if (!empty($_POST['title']) && !empty($_POST['content'])) {
-                addPost($_POST['title'], $_POST['content'], $_POST['post_thumbnail']);
+                addPost($_POST['title'], $_POST['content'], $_FILES['post_thumbnail']['name']);
               }
               else {
                   throw new Exception('Tous les champs ne sont pas remplis !');

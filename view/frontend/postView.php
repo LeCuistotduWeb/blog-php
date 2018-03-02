@@ -1,13 +1,10 @@
 <?php ob_start(); ?>
 
 <?php $title = htmlspecialchars($post->title()); ?>
-
-<!-- header -->
-<?php require_once 'layout/header.php' ?>
-<!-- /header -->
+<?php $subHeading = htmlspecialchars($post->creation_date()); ?>
+<?php $heading = htmlspecialchars($post->title()); ?>
 
 <!-- content -->
-
 <!-- Post Content -->
 <div class="container">
     <article>
@@ -75,4 +72,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require_once 'template.php'; ?>

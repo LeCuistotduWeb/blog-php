@@ -1,5 +1,8 @@
 // Styling for the post page
 .post-preview {
+  p {
+    text-align: justify;
+  }
   > a {
     color: $gray-900;
     &:focus,
@@ -19,8 +22,24 @@
     > .post-img{
       max-width : 100%;
     }
-
+    .first-post-thumb_container {
+    width: 100%;
+    max-height: 550px;
+    overflow: hidden;
+    > .firstpost-img{
+      max-width: 100%;
+      }
+    }
+    >.post-thumb-content{
+      max-height: 285px;
+      width: 100%;
+      overflow: hidden;
+      >.post-img{
+        width: 100%;
+      }
+    }
   }
+
   > .post-meta {
     font-size: 18px;
     font-style: italic;
@@ -35,6 +54,7 @@
         color: $primary;
       }
     }
+
   }
   @media only screen and (min-width: 768px) {
     > a {

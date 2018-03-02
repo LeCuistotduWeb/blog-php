@@ -43,7 +43,7 @@ function deleteComment($id) {
         throw new Exception('Impossible de supprimer le commentaire !');
     }
     else {
-        header('Location: index.php?action=backend');
+        header('Location: index.php');
     }
   }
 

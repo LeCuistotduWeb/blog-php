@@ -10,9 +10,18 @@ class PostManager
     * function getPosts
     * retourne tout les article
     */
-    public function posts() {
+    public function posts($v1,$v2) {
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT 1, 4');
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT '.$v1.','.$v2);
+
+      while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
+      $posts[] = new Post($donnees);
+    }
+      return $posts;
+    }
+    public function backendPosts() {
+      $posts = [];
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -64,16 +73,42 @@ class PostManager
     * function addPost
     * ajoute un billet
     */
-    public function addPost($title, $content, $post_thumbnail) {
+    public function addPost($title, $content) {
         $newPost = [];
-        $req = $this->db->prepare('INSERT INTO posts(title, content, post_thumbnail, creation_date) VALUES(:title, :content, :post_thumbnail, NOW()');
+        $req = $this->db->prepare('INSERT INTO posts(title, content, creation_date) VALUES (:title, :content, NOW())');
+        $req->execute(array(
+          'title'          => $title,
+          'content'        => $content
+        ));
+        return $newPost;
+    }
+    /**
+    * function modifyPost
+    * modifie un billet
+    */
+    public function modifyPost($post_id, $title, $content, $post_thumbnail) {
+        $modifyPost = [];
+        $req = $this->db->prepare('UPDATE posts SET  post_id=:post_id, title=:title, content=:content, post_thumbnail=:post_thumbnail WHERE post_id=:post_id,');
         $req->execute(array(
           'title'          => $title,
           'content'        => $content,
           'post_thumbnail' => $post_thumbnail
         ));
-        return $newPost;
+        return $modifyPost;
     }
+
+    /**
+    * function deletePost
+    * supprime le commentaire
+    * @param $id
+    */
+    public function deletePost($id) {
+        $posts = $this->db->prepare('DELETE FROM posts WHERE id = ?');
+        $affectedLines = $posts->execute(array($id));
+
+        return $affectedLines;
+    }
+
     /**
     * function getDb
     * connection bdd

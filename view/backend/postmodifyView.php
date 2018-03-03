@@ -5,7 +5,7 @@
     <div class="container">
       <h1 class="mt-5">Edition de billet</h1>
 
-      <form class="mt-5" action="index.php?action=addPost" method="post" enctype="multipart/form-data">
+      <form class="mt-5" action="index.php?action=modifyPost&postId=<?= $post->id()?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="titleBillet">Titre : </label>
           <input type="text" class="form-control" id="title" name="title" placeholder="<?= $post->title(); ?>">

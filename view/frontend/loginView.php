@@ -1,12 +1,12 @@
-<?php $title = "login"; ?>
-
+<?php $title = "Login"; ?>
+<?php $subHeading = " "?>
+<?php $heading = "Connection administration"?>
 <?php ob_start(); ?>
 
 <!-- content -->
 <body>
   <div class="container">
     <div class="card card-login mx-auto px-0">
-      <div class="card-header">Connection administration</div>
       <div class="card-body">
         <form>
           <div class="form-group">

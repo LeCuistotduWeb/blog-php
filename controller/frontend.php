@@ -4,18 +4,18 @@ require_once 'model/Autoloader.php';
 
 function listPosts() {
     $postManager = new PostManager(); // Création d'un objet
-    $posts = $postManager->posts(); // Appel d'une fonction de cet objet
+    $posts = $postManager->posts(1,4); // Appel d'une fonction de cet objet
     $lastPost = $postManager->lastPost(); // Appel d'une fonction de cet objet
 
     require('view/frontend/listPostsView.php');
 }
 
-function post() {
+function post($post_id) {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
-    $post = $postManager->post($_GET['id']);
-    $comments = $commentManager->comments($_GET['id']);
+    $post = $postManager->post($post_id);
+    $comments = $commentManager->comments($post_id);
 
     require('view/frontend/postView.php');
 }

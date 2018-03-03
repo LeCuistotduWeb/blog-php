@@ -9,7 +9,7 @@ function backend() {
     $commentCount = $commentManager->commentCount();
     $reportCount = $commentManager->reportCount();
 
-    $posts = $postManager->posts();
+    $posts = $postManager->backendPosts();
     $reportList = $commentManager->reportList();
 
     if(isset($id)){
@@ -23,9 +23,19 @@ function editPost() {
     require('view/backend/postEditView.php');
 }
 
+function modifyPost($post_id) {
+  $modifyPost = modifyPost($post_id, $title, $content);
+  if ($modifyPost === false) {
+      throw new Exception('Impossible de modifier le billet !');
+  }
+  else {
+      header('Location: index.php?action=backend');
+    }
+}
+
 function addPost($title, $content, $post_thumbnail) {
   $postManager = new postManager();
-  $addPost = $postManager->addPost($title, $content, $post_thumbnail);
+  $addPost = $postManager->addPost($title, $content);
   if ($newPost === false) {
       throw new Exception('Impossible d\'ajouter le billet !');
   }
@@ -43,7 +53,20 @@ function deleteComment($id) {
         throw new Exception('Impossible de supprimer le commentaire !');
     }
     else {
-        header('Location: index.php');
+        header('Location: index.php?action=backend');
+    }
+  }
+
+function deletePost($id) {
+    $postManager = new postManager();
+
+    $affectedLines = $postManager->deletePost($id);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible de supprimer le billet !');
+    }
+    else {
+        header('Location: index.php?action=backend');
     }
   }
 

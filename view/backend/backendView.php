@@ -60,7 +60,7 @@
                 <div><?= $post->title(); ?></div>
               </div>
               <div class=" col-md-3 d-flex justify-content-md-end">
-                <button class="btn btn-warning p-2 "><a href="index.php?action=modifyPost&postId=<?= $post->id();?>"><i class="fa fa-edit text-white"></i> </a></button>
+                <button class="btn btn-warning p-2 "><a href="index.php?action=editPost&postId=<?= $post->id();?>"><i class="fa fa-edit text-white"></i> </a></button>
                 <button class="btn btn-danger p-2 ml-2"><a href="index.php?action=deletePost&postId=<?= $post->id();?>"><i class="fa fa-trash text-white"></i></a></button>
               </div>
             </div>

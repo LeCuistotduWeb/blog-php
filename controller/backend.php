@@ -19,11 +19,18 @@ function backend() {
     require('view/backend/backendView.php');
 }
 
-function editPost() {
-    require('view/backend/postEditView.php');
+function editPost($post_id) {
+    if(isset($post_id)){
+      $postManager = new postManager();
+      $post = $postManager->post($post_id);
+      require('view/backend/postModifyView.php');
+    }else{
+      require('view/backend/postEditView.php');
+    }
 }
 
-function modifyPost($post_id) {
+function modifyPost($post_id, $title, $content) {
+  $postManager = new postManager();
   $modifyPost = modifyPost($post_id, $title, $content);
   if ($modifyPost === false) {
       throw new Exception('Impossible de modifier le billet !');

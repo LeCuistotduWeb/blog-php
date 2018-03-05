@@ -27,14 +27,14 @@
       </div>
       <hr>
       <div class="row">
-      <?php foreach ($posts as $post){?>
+      <?php foreach ($posts as $post) { ?>
         <article class="post-preview col-md-6">
           <a href="index.php?action=post&id=<?= $post->id()?>">
             <div class="post-thumb-content">
               <img src="public/img/<?= $post->post_thumbnail()?>" alt="photo d'un orque qui nage" class="post-img">
             </div>
             <h3 class="post-title"><?= $post->title();?></h3>
-            <p><?= $donnees->excerpt();?></p>
+            <p><?= $post->excerpt();?></p>
           </a>
           <p class="post-meta"><?= $post->creation_date();?></p>
         </article>

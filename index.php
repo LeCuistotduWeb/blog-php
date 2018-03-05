@@ -26,11 +26,15 @@ try {
                 backend();
         }
         elseif ($_GET['action'] == 'editPost') {
-          editPost();
+          if(isset($_GET['postId'])){
+            editPost($_GET['postId']);
+          }else{
+            editPost();
+          }
         }
         elseif ($_GET['action'] == 'modifyPost') {
-          if(!empty($_GET['postId'])){
-            modifyPost($_GET['postId']);
+          if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content'])){
+            modifyPost($_GET['postId'], $_POST['title'], $_POST['content']);
           }
           else {
               throw new Exception('Id de billet inconnu');

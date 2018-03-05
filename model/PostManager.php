@@ -19,6 +19,7 @@ class PostManager
     }
       return $posts;
     }
+
     public function backendPosts() {
       $posts = [];
       $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC');
@@ -35,7 +36,7 @@ class PostManager
     * @param $postid
     */
     public function post($postId) {
-        $req = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+        $req = $this->db->prepare('SELECT id, title, content, creation_date FROM posts WHERE id = ?');
         $req->execute(array($postId));
 
         $donnees = $req->fetch(PDO::FETCH_ASSOC);
@@ -65,7 +66,6 @@ class PostManager
     public function postCount() {
         $req = $this->db->query('SELECT COUNT(*) as postNb FROM posts');
         $donnees = $req->fetch(PDO::FETCH_ASSOC);
-
         return $donnees['postNb'];
     }
 
@@ -86,9 +86,9 @@ class PostManager
     * function modifyPost
     * modifie un billet
     */
-    public function modifyPost($post_id, $title, $content, $post_thumbnail) {
+    public function modifyPost($post_id, $title, $content) {
         $modifyPost = [];
-        $req = $this->db->prepare('UPDATE posts SET  post_id=:post_id, title=:title, content=:content, post_thumbnail=:post_thumbnail WHERE post_id=:post_id,');
+        $req = $this->db->prepare('UPDATE posts SET title=:title, content=:content, post_thumbnail=:post_thumbnail WHERE post_id=:post_id,');
         $req->execute(array(
           'title'          => $title,
           'content'        => $content,

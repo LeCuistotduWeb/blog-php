@@ -79,8 +79,8 @@
           <li class="list-group-item col-12 border-danger">
             <div class="post row d-flex align-items-center">
               <div class="col-md-9">
-                <div class="font-weight-bold"><?= $report->author(); ?> le : <span class="comment-date"><?= $report->comment_date(); ?></span></div>
-                <div class="comment-text"><?= $report->comment(); ?></div>
+                <div class="font-weight-bold"><?= htmlspecialchars($report->author()); ?> le : <span class="comment-date"><?= htmlspecialchars($report->comment_date()); ?></span></div>
+                <div class="comment-text"><?= htmlspecialchars($report->comment()); ?></div>
               </div>
               <div class="col-md-3 d-flex justify-content-md-end">
                 <button class="btn btn-success p-2"><a href="index.php?action=authorizedComment&commentId=<?= $report->id();?>"><i class="fa fa-check text-white"></i></a></button>

@@ -43,7 +43,7 @@
 
 
         <div class="row mt-5">
-          <a href="index.php?action=editPost" class="btn btn-primary mt-1 col-lg-3 col-md-6 col-sm-12">Ajouter un billet</a>
+          <a href="index.php?action=createNewPost" class="btn btn-primary mt-1 col-lg-3 col-md-6 col-sm-12">Ajouter un billet</a>
           <a href="#reportList" class="btn btn-danger mt-1 ml-2 col-lg-3 col-md-6 col-sm-12">messages signalés</a>
         </div>
         <div class="row">

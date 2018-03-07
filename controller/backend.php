@@ -19,14 +19,14 @@ function backend() {
     require('view/backend/backendView.php');
 }
 
+function createNewPost() {
+  require('view/backend/postEditView.php');
+}
+
 function editPost($post_id) {
-    if(isset($post_id)){
-      $postManager = new postManager();
-      $post = $postManager->post($post_id);
-      require('view/backend/postModifyView.php');
-    }else{
-      require('view/backend/postEditView.php');
-    }
+  $postManager = new postManager();
+  $post = $postManager->post($post_id);
+  require('view/backend/postModifyView.php');
 }
 
 function modifyPost($post_id, $title, $content) {

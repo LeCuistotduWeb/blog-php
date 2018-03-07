@@ -4,7 +4,6 @@ require_once 'config.php';
 require_once 'controller/frontend.php';
 require_once 'controller/backend.php';
 
-
 // Chargement de l'autoloader
 require_once 'model/Autoloader.php';
 Autoloader::register();
@@ -24,6 +23,9 @@ try {
         }
         elseif ($_GET['action'] == 'backend') {
                 backend();
+        }
+        elseif ($_GET['action'] == 'createNewPost') {
+          createNewPost();
         }
         elseif ($_GET['action'] == 'editPost') {
           if(isset($_GET['postId'])){

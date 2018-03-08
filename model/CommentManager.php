@@ -39,14 +39,15 @@ class CommentManager
     * function postComment
     * ajoute un commmentaire
     */
-    public function addComment($postId, $author, $comment) {
+    public function addComment($commentObj) {
         $newComment = [];
         $req = $this->db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(:post_id, :author, :comment, NOW())');
         $req->execute(array(
-          'post_id'      => $postId,
-          'author'       => $author,
-          'comment'      => $comment
+          'post_id' => $commentObj->post_id(),
+          'author'  => $commentObj->author(),
+          'comment' => $commentObj->comment()
         ));
+
         return $newComment;
     }
 

@@ -24,30 +24,21 @@ function login() {
   require('view/frontend/loginView.php');
 }
 
-function addComment($postId, $author, $comment) {
+function addComment($post_id, $author, $comment) {
     $commentManager = new CommentManager();
-    $newComment = $commentManager->addComment($postId, $author, $comment);
+    $commentObj = new Comment(array(
+      'post_id' => $post_id,
+      'author'  => $author,
+      'comment' => $comment
+    ));
+    $newComment = $commentManager->addComment($commentObj);
 
     if ($newComment === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id=' . $postId);
+        header('Location: index.php?action=post&id=' . $post_id);
     }
-}
-
-function modifyComment($id, $postId, $author, $comment) {
-    $commentManager = new CommentManager();
-
-    $affectedLines = $commentManager->modifyComment($id, $author, $comment);
-
-    if ($affectedLines === false) {
-        throw new Exception('Impossible de modifer le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=post&id=' . $postId);
-    }
-    require('view/frontend/comment.php');
 }
 
 function reportComment($commentId,$postId) {

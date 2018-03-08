@@ -35,7 +35,7 @@ class Comment
 
     // getters
     public function id() { return $this->id; }
-    public function post_Id() { return $this->post_id; }
+    public function post_id() { return $this->post_id; }
     public function author() { return $this->author; }
     public function comment() { return $this->comment; }
     public function comment_date() { return $this->comment_date; }
@@ -50,12 +50,12 @@ class Comment
         $this->id = $id;
       }
     }
-    public function setPost_id($postid) {
-      $postid = (int) $postid;
+    public function setPost_id($post_id) {
+      $post_id = (int) $post_id;
 
-      if ($postid > 0)
+      if ($post_id > 0)
       {
-        $this->$postid = $postid;
+        $this->post_id = $post_id;
       }
     }
     public function setAuthor($author) {

@@ -73,12 +73,12 @@ class PostManager
     * function addPost
     * ajoute un billet
     */
-    public function addPost($title, $content) {
+    public function addPost($postObj) {
         $newPost = [];
         $req = $this->db->prepare('INSERT INTO posts(title, content, creation_date) VALUES (:title, :content, NOW())');
         $req->execute(array(
-          'title'          => $title,
-          'content'        => $content
+          'title'          => $postObj->title(),
+          'content'        => $postObj->content()
         ));
         return $newPost;
     }
@@ -86,13 +86,13 @@ class PostManager
     * function modifyPost
     * modifie un billet
     */
-    public function modifyPost($post_id, $title, $content) {
+    public function modifyPost($postObj) {
         $modifyPost = [];
-        $req = $this->db->prepare('UPDATE posts SET title=:title, content=:content, post_thumbnail=:post_thumbnail WHERE post_id=:post_id,');
+        $req = $this->db->prepare('UPDATE posts SET title=:title, content=:content WHERE id=:id');
         $req->execute(array(
-          'title'          => $title,
-          'content'        => $content,
-          'post_thumbnail' => $post_thumbnail
+          'id' => $postObj->id(),
+          'title'   => $postObj->title(),
+          'content' => $postObj->content()
         ));
         return $modifyPost;
     }

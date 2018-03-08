@@ -31,7 +31,12 @@ function editPost($post_id) {
 
 function modifyPost($post_id, $title, $content) {
   $postManager = new postManager();
-  $modifyPost = modifyPost($post_id, $title, $content);
+  $postObj = new post(array(
+    'id' => $post_id,
+    'title'   => $title,
+    'content' => $content
+  ));
+  $modifyPost = $postManager->modifyPost($postObj);
   if ($modifyPost === false) {
       throw new Exception('Impossible de modifier le billet !');
   }
@@ -40,9 +45,13 @@ function modifyPost($post_id, $title, $content) {
     }
 }
 
-function addPost($title, $content, $post_thumbnail) {
+function addPost($title, $content) {
   $postManager = new postManager();
-  $addPost = $postManager->addPost($title, $content);
+  $postObj = new post(array(
+    'title' => $title,
+    'content'   => $content,
+  ));
+  $addPost = $postManager->addPost($postObj);
   if ($newPost === false) {
       throw new Exception('Impossible d\'ajouter le billet !');
   }

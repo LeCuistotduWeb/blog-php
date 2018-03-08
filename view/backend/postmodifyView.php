@@ -21,7 +21,7 @@
           <textarea class="form-control tinymce" id="content" name="content" rows="10" placeholder="<?= $post->content(); ?>"><?= $post->content(); ?></textarea>
         </div>
 
-        <button class="btn btn-primary float-right" type="submit">Publier</button>
+        <button class="btn btn-primary float-right" type="submit">Modifier</button>
       </form>
     </div>
     <!-- content -->

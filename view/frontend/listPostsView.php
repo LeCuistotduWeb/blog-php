@@ -13,7 +13,7 @@
         <div class="post-preview first-post">
           <a href="index.php?action=post&id=<?= $donnees->id(); ?>">
             <div class="first-post-thumb_container">
-              <img src="public/img/<?= $donnees->post_thumbnail(); ?>" alt="photo d'un orque qui nage" class="firstpost-img">
+              <img src="public/img/<?= $donnees->post_thumbnail(); ?>" alt="<?= $donnees->post_thumbnail(); ?>" class="firstpost-img">
             </div>
             <h3 class="post-title">
               <?= $donnees->title(); ?>
@@ -31,7 +31,7 @@
         <article class="post-preview col-md-6">
           <a href="index.php?action=post&id=<?= $post->id()?>">
             <div class="post-thumb-content">
-              <img src="public/img/<?= $post->post_thumbnail()?>" alt="photo d'un orque qui nage" class="post-img">
+              <img src="public/img/<?= $post->post_thumbnail()?>" alt="<?= $post->post_thumbnail()?>" class="post-img">
             </div>
             <h3 class="post-title"><?= $post->title();?></h3>
             <p><?= $post->excerpt();?></p>

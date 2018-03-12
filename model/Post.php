@@ -36,10 +36,10 @@ class Post extends Table
       $this->content = $content;
     }
     public function setCreation_date($creation_date) {
-      if (preg_match('/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/', $creation_date))
-      {
+      // if (preg_match('/(\d{2})-(\d{2})-(\d{4}) (\d{2}):(\d{2}):(\d{2})/', $creation_date))
+      // {
         $this->creation_date = $creation_date;
-      }
+      // }
     }
     public function setPost_thumbnail($post_thumbnail) {
       $this->post_thumbnail = $post_thumbnail ;

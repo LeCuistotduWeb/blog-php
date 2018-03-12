@@ -12,7 +12,7 @@ class PostManager
     */
     public function posts($v1,$v2) {
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT '.$v1.','.$v2);
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y %Hh%imin%ss") AS creation_date FROM posts ORDER BY creation_date DESC LIMIT '.$v1.','.$v2);
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -22,7 +22,7 @@ class PostManager
 
     public function backendPosts() {
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC');
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y %Hh%imin%ss") AS creation_date FROM posts ORDER BY creation_date DESC');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -36,7 +36,7 @@ class PostManager
     * @param $postid
     */
     public function post($postId) {
-        $req = $this->db->prepare('SELECT id, title, content, creation_date FROM posts WHERE id = ?');
+        $req = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, "%d-%m-%Y") AS creation_date FROM posts WHERE id = ?');
         $req->execute(array($postId));
 
         $donnees = $req->fetch(PDO::FETCH_ASSOC);
@@ -96,19 +96,16 @@ class PostManager
         ));
         return $modifyPost;
     }
-
     /**
     * function deletePost
-    * supprime le commentaire
+    * supprime le billet
     * @param $id
     */
     public function deletePost($id) {
         $posts = $this->db->prepare('DELETE FROM posts WHERE id = ?');
         $affectedLines = $posts->execute(array($id));
-
         return $affectedLines;
     }
-
     /**
     * function getDb
     * connection bdd

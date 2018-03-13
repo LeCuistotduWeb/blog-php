@@ -1,7 +1,14 @@
 <?php
 
-ini_set('display_errors', 'on');
-error_reporting(E_ALL);
+$host = $_SERVER['HTTP_HOST'];
+$root = $_SERVER['DOCUMENT_ROOT'];
 
-// echo '<pre>' ; print_r($_SERVER);
-// exit;
+define('HOST', 'http://'.$host.'Blog-mvc/');
+define('ROOT', $root.'Blog-mvc/');
+
+define('CONTROLLER', $root.'controller/');
+define('MODEL', $root.'model/');
+define('VIEW_FRONT', $root.'view/frontend/');
+define('VIEW_BACK', $root.'view/backend/');
+
+define('PUBLIC', $host.'public/');

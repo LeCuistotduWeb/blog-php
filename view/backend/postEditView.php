@@ -25,7 +25,6 @@
       </form>
     </div>
     <!-- content -->
-
 <?php $content = ob_get_clean(); ?>
 
 <?php require('templateBackend.php'); ?>

@@ -17,7 +17,7 @@ class User
   }
 
   // getters
-  public Id() { return $this->id; }
+  public id() { return $this->id; }
   public Username() { return $this->username; }
   public Password() { return $this->password; }
   public Email() { return $this->email; }
@@ -35,11 +35,11 @@ class User
     $username = (string) $username;
     $this->username = $username;
   }
-  public setUsername($password) {
+  public setPassword($password) {
     $password = (string) $password;
     $this->password = $password;
   }
-  public setUsername($email) {
+  public setEmail($email) {
     $email = (string) $email;
     $this->email = $email;
   }

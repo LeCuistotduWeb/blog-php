@@ -15,13 +15,16 @@
           <label for="contntBillet">Image mise en avant : </label>
           <input type="file" name="post_thumbnail" id="post_thumbnail" class="form-control">
         </div>
-
+        <p>
+          Image actuelle : <br>
+          <img src="public/img/<?= $post->post_thumbnail(); ?>" alt="" width="150px">
+        </p>
         <div class="form-group">
           <label for="contentBillet">Contenu : </label>
           <textarea class="form-control tinymce" id="content" name="content" rows="10" placeholder="<?= $post->content(); ?>"><?= $post->content(); ?></textarea>
         </div>
 
-        <button class="btn btn-primary float-right" type="submit">Modifier</button>
+        <button class="btn btn-primary float-right mb-5" type="submit">Modifier</button>
       </form>
     </div>
     <!-- content -->

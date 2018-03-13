@@ -22,7 +22,7 @@ class PostManager
 
     public function backendPosts() {
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y %Hh%imin%ss") AS creation_date FROM posts ORDER BY creation_date DESC');
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y %Hh%imin%ss") AS creation_date FROM posts ORDER BY id DESC');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -36,7 +36,7 @@ class PostManager
     * @param $postid
     */
     public function post($postId) {
-        $req = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, "%d-%m-%Y") AS creation_date FROM posts WHERE id = ?');
+        $req = $this->db->prepare('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y") AS creation_date FROM posts WHERE id = ?');
         $req->execute(array($postId));
 
         $donnees = $req->fetch(PDO::FETCH_ASSOC);
@@ -75,10 +75,11 @@ class PostManager
     */
     public function addPost($postObj) {
         $newPost = [];
-        $req = $this->db->prepare('INSERT INTO posts(title, content, creation_date) VALUES (:title, :content, NOW())');
+        $req = $this->db->prepare('INSERT INTO posts(title, content, post_thumbnail, creation_date) VALUES (:title, :content, :post_thumbnail, NOW())');
         $req->execute(array(
           'title'          => $postObj->title(),
-          'content'        => $postObj->content()
+          'content'        => $postObj->content(),
+          'post_thumbnail' => $postObj->post_thumbnail()
         ));
         return $newPost;
     }
@@ -88,11 +89,12 @@ class PostManager
     */
     public function modifyPost($postObj) {
         $modifyPost = [];
-        $req = $this->db->prepare('UPDATE posts SET title=:title, content=:content WHERE id=:id');
+        $req = $this->db->prepare('UPDATE posts SET title=:title, content=:content, post_thumbnail=:post_thumbnail WHERE id=:id');
         $req->execute(array(
           'id' => $postObj->id(),
           'title'   => $postObj->title(),
-          'content' => $postObj->content()
+          'content' => $postObj->content(),
+          'post_thumbnail' => $postObj->post_thumbnail()
         ));
         return $modifyPost;
     }
@@ -106,6 +108,22 @@ class PostManager
         $affectedLines = $posts->execute(array($id));
         return $affectedLines;
     }
+    /**
+    * function addThumbnail
+    * verifie puis ajoute une image
+    */
+    public function addThumbnail($post_thumbnail){
+      if ($post_thumbnail[error] === 0){
+        $ext = strtolower(substr($post_thumbnail['name'],-3)); //recupere l'extension
+        $allow_ext = array("jpg","png","gif","jpeg"); //extensions acceptée
+
+        if(in_array($ext,$allow_ext)){ //verifie l'extension sinon message erreur
+          move_uploaded_file($post_thumbnail['tmp_name'], "public/img/".$post_thumbnail['name']);
+        }
+      }
+
+      return $post_thumbnail;
+      }
     /**
     * function getDb
     * connection bdd

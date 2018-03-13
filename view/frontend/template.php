@@ -27,6 +27,9 @@
   <header class="masthead" style="background-image: url('public/img/home-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
+      <!-- messages errors -->
+      <?php $Session->flash(); ?>
+      <!-- messages errors -->
       <div class="row">
         <div class="col-lg-10 col-md-10 mx-auto">
           <div class="site-heading">
@@ -39,6 +42,7 @@
     </div>
   </header>
   <!-- /header -->
+
 
   <!-- content -->
   <?= $content;?>
@@ -77,6 +81,7 @@
             </li>
           </ul>
           <p class="copyright text-muted">Copyright &copy; Jean Forteroche</p>
+          <p class="copyright text-muted"><a href="index.php?action=login">login</a></p>
         </div>
       </div>
     </div>
@@ -87,7 +92,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+  <script src="public/js/app.js" type="text/javascript"></script>
 </body>
 
 </html>

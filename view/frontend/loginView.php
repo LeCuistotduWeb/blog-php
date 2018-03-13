@@ -8,22 +8,16 @@
   <div class="container">
     <div class="card card-login mx-auto px-0">
       <div class="card-body">
-        <form>
+        <form action="index.php?action=loginVerify" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">identifiant</label>
-            <input class="form-control" type="text" placeholder="Entrer votre identifiant">
+            <input class="form-control" type="text" placeholder="Entrer votre identifiant" name="username">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input class="form-control" type="password" placeholder="Mot de passe">
+            <input class="form-control" type="password" placeholder="Mot de passe" name="password">
           </div>
-          <div class="form-group">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox"> Rester connecté</label>
-            </div>
-          </div>
-          <a class="btn btn-primary btn-block" href="index.php?action=backend">Se connecter</a>
+          <button type="submit" class="btn btn-primary">Se connecter</button>
         </form>
       </div>
     </div>

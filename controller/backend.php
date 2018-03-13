@@ -1,100 +1,114 @@
 <?php
-// Chargement de l'autoloader
-require_once 'model/Autoloader.php';
-
 function backend() {
-    $commentManager = new CommentManager();
-    $postManager = new postManager();
-    $postCount = $postManager->postCount();
-    $commentCount = $commentManager->commentCount();
-    $reportCount = $commentManager->reportCount();
+  $Session = new Session();
+  $commentManager = new CommentManager();
+  $postManager = new postManager();
+  $postCount = $postManager->postCount();
+  $commentCount = $commentManager->commentCount();
+  $reportCount = $commentManager->reportCount();
 
-    $posts = $postManager->backendPosts();
-    $reportList = $commentManager->reportList();
+  $posts = $postManager->backendPosts();
+  $reportList = $commentManager->reportList();
 
-    if(isset($id)){
-      $deleteComment = $commentManager->deleteComment($id);
-    }
+  if(isset($id)){
+    $deleteComment = $commentManager->deleteComment($id);
+  }
 
-    require('view/backend/backendView.php');
+  require('view/backend/backendView.php');
 }
 
 function createNewPost() {
+  $Session = new Session();
   require('view/backend/postEditView.php');
 }
 
 function editPost($post_id) {
+  $Session = new Session();
   $postManager = new postManager();
   $post = $postManager->post($post_id);
   require('view/backend/postModifyView.php');
 }
 
-function modifyPost($post_id, $title, $content) {
+function modifyPost($post_id, $title, $content, $post_thumbnail) {
+  $Session = new Session();
   $postManager = new postManager();
+  $modifyPost = $postManager->addThumbnail($post_thumbnail);
   $postObj = new post(array(
-    'id' => $post_id,
-    'title'   => $title,
-    'content' => $content
+    'id'             => $post_id,
+    'title'          => $title,
+    'content'        => $content,
+    'post_thumbnail' => $post_thumbnail['name']
   ));
   $modifyPost = $postManager->modifyPost($postObj);
   if ($modifyPost === false) {
-      throw new Exception('Impossible de modifier le billet !');
+      $Session->setFlash('Impossible de modifier le billet !','danger');
+      header('Location: index.php?action=backend');
   }
   else {
+      $Session->setFlash('Le billet a bien été modifié','success');
       header('Location: index.php?action=backend');
     }
 }
 
-function addPost($title, $content) {
+function addPost($title, $content, $post_thumbnail) {
+  $Session = new Session();
   $postManager = new postManager();
+  $modifyPost = $postManager->addThumbnail($post_thumbnail);
   $postObj = new post(array(
-    'title' => $title,
-    'content'   => $content,
+    'title'            => $title,
+    'content'          => $content,
+    'post_thumbnail'   => $post_thumbnail['name']
   ));
   $addPost = $postManager->addPost($postObj);
   if ($newPost === false) {
-      throw new Exception('Impossible d\'ajouter le billet !');
+    $Session->setFlash('Impossible d\'ajouter le billet !','danger');
   }
   else {
-      header('Location: index.php?action=backend');
-    }
+    $Session->setFlash('Le billet a bien été ajouté','success');
+  }
+  header('Location: index.php?action=backend');
 }
 
 function deleteComment($id) {
-    $commentManager = new CommentManager();
+  $Session = new Session();
+  $commentManager = new CommentManager();
 
-    $affectedLines = $commentManager->deleteComment($id);
+  $affectedLines = $commentManager->deleteComment($id);
 
-    if ($affectedLines === false) {
-        throw new Exception('Impossible de supprimer le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=backend');
-    }
+  if ($affectedLines === false) {
+    $Session->setFlash('Impossible de supprimer le commentaire !','danger');
   }
+  else {
+    $Session->setFlash('Le commentaire a bien été supprimé','danger');
+  }
+  header('Location: index.php?action=backend');
+}
 
 function deletePost($id) {
-    $postManager = new postManager();
+  $Session = new Session();
+  $postManager = new postManager();
+  $affectedLines = $postManager->deletePost($id);
 
-    $affectedLines = $postManager->deletePost($id);
-
-    if ($affectedLines === false) {
-        throw new Exception('Impossible de supprimer le billet !');
-    }
-    else {
-        header('Location: index.php?action=backend');
-    }
+  if ($affectedLines === false) {
+    $Session->setFlash('Impossible de supprimer le billet !','danger');
   }
+  else {
+    $Session->setFlash('le commentaire a bien été supprimé','success');
+  }
+  header('Location: index.php?action=backend');
+}
 
 function authorizedComment($commentId) {
-    $commentManager = new CommentManager();
+  $Session = new Session();
+  $commentManager = new CommentManager();
 
-    $affectedLines = $commentManager->authorizedComment($commentId);
+  $affectedLines = $commentManager->authorizedComment($commentId);
 
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d\'autorisé le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=backend');
-    }
+  if ($affectedLines === false) {
+    $Session->setFlash('Impossible d\'autorisé le commentaire !','danger');
+  }
+  else {
+    $Session->setFlash('Le commentaire a bien été validé','success');
+  }
+  header('Location: index.php?action=backend');
 }

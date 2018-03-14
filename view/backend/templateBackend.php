@@ -62,7 +62,7 @@
           <div class="modal-body">Voulez-vous vraimment vous deconnecter ?</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-            <a class="btn btn-primary" href="index.php?action=listPosts">Déconnexion</a>
+            <a class="btn btn-primary" href="index.php?action=disconnect">Déconnexion</a>
           </div>
           </div>
         </div>

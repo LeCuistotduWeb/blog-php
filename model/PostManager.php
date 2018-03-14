@@ -10,9 +10,11 @@ class PostManager
     * function getPosts
     * retourne tout les article
     */
-    public function posts($v1,$v2) {
+    public function posts($page) {
+      $limite = (int) 4;
+
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y %Hh%imin%ss") AS creation_date FROM posts ORDER BY creation_date DESC LIMIT '.$v1.','.$v2);
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT '.(($page - 1) * $limite).','.$limite);
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -22,7 +24,7 @@ class PostManager
 
     public function backendPosts() {
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y %Hh%imin%ss") AS creation_date FROM posts ORDER BY id DESC');
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -51,7 +53,7 @@ class PostManager
     */
     public function lastPost() {
 
-      $req = $this->db->query('SELECT id, title, content, creation_date, post_thumbnail FROM posts ORDER BY creation_date DESC LIMIT 1');
+      $req = $this->db->query('SELECT id, title, content, creation_date , post_thumbnail FROM posts ORDER BY creation_date DESC LIMIT 1');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $lastPost[] = new Post($donnees);

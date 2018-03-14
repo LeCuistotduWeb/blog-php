@@ -72,7 +72,6 @@ function addPost($title, $content, $post_thumbnail) {
 function deleteComment($id) {
   $Session = new Session();
   $commentManager = new CommentManager();
-
   $affectedLines = $commentManager->deleteComment($id);
 
   if ($affectedLines === false) {
@@ -89,11 +88,14 @@ function deletePost($id) {
   $postManager = new postManager();
   $affectedLines = $postManager->deletePost($id);
 
+  $commentManager = new CommentManager();
+  $affectedLines = $commentManager->deleteCommentPost($id);
+
   if ($affectedLines === false) {
     $Session->setFlash('Impossible de supprimer le billet !','danger');
   }
   else {
-    $Session->setFlash('le commentaire a bien été supprimé','success');
+    $Session->setFlash('le billet a bien été supprimé','success');
   }
   header('Location: index.php?action=backend');
 }
@@ -111,4 +113,10 @@ function authorizedComment($commentId) {
     $Session->setFlash('Le commentaire a bien été validé','success');
   }
   header('Location: index.php?action=backend');
+}
+
+function disconnect() {
+  $session = new Session();
+  $session->disconnect();
+  header('Location: index.php?action=listsPost');
 }

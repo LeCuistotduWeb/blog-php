@@ -1,9 +1,10 @@
 <?php
 
-function listPosts() {
+function listPosts($page) {
+  $page=(!empty($_GET['page']) ? $_GET['page'] : 1);
   $Session = new Session();
   $postManager = new PostManager();
-  $posts = $postManager->posts(1,50);
+  $posts = $postManager->posts($page);
   $lastPost = $postManager->lastPost();
 
   require('view/frontend/listPostsView.php');

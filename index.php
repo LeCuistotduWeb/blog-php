@@ -3,8 +3,8 @@
 // requires
 require_once 'config.php';
 require_once 'controller/frontend.php';
-require_once 'controller/login.php';
 require_once 'controller/backend.php';
+require_once 'controller/login.php';
 
 // Chargement de l'autoloader
 require_once 'model/Autoloader.php';
@@ -13,7 +13,7 @@ Autoloader::register();
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
-            listPosts();
+            listPosts($page = 1);
         }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -45,7 +45,7 @@ try {
               }
         }
         elseif ($_GET['action'] == 'modifyPost') {
-          if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES['post_thumbnail'])){
+          if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && isset($_FILES)){
             modifyPost($_GET['postId'], $_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
           }
           else {
@@ -97,20 +97,25 @@ try {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
             }
         }
-        // elseif ($_GET['action'] == 'login') {
-        //   login();
-        // }
-        // elseif ($_GET['action'] == 'loginVerify') {
-        //   if (!empty($_POST['username']) && !empty($_POST['password'])) {
-        //     loginVerify($_POST['username'], $_POST['password']);
-        //   }
-        //   else {
-        //     throw new Exception('Tous les champs ne sont pas remplis !');
-        //   }
-        // }
-        else { listPosts(); }
+
+        elseif ($_GET['action'] == 'disconnect') {
+          disconnect();
+        }
+        elseif ($_GET['action'] == 'login') {
+          login();
+        }
+        elseif ($_GET['action'] == 'loginVerify') {
+          if (!empty($_POST['username']) && !empty($_POST['password'])) {
+            loginVerify($_POST['username'], $_POST['password']);
+          }
+          else {
+            throw new Exception('Tous les champs ne sont pas remplis !');
+          }
+        }
+
+        else { listPosts($page = 1); }
       }
-    else { listPosts(); }
+    else { listPosts($page= 1); }
 }
 catch(Exception $e) {
     echo 'Erreur : ' . $e->getMessage();

@@ -11,35 +11,52 @@ class User
   private $password;
   private $email;
 
-
   public function __construct(array $donnees) {
     $this->hydrate($donnees);
   }
 
+  /**
+   * function hydrate
+   */
+  private function hydrate(array $donnees) {
+    foreach ($donnees as $key => $value)
+    {
+      // On récupère le nom du setter correspondant à l'attribut.
+      $method = 'set'.ucfirst($key);
+
+      // Si le setter correspondant existe.
+      if (method_exists($this, $method))
+      {
+        // On appelle le setter.
+        $this->$method($value);
+      }
+    }
+  }
+
   // getters
-  public id() { return $this->id; }
-  public Username() { return $this->username; }
-  public Password() { return $this->password; }
-  public Email() { return $this->email; }
+  public function id() { return $this->id; }
+  public function username() { return $this->username; }
+  public function password() { return $this->password; }
+  public function email() { return $this->email; }
 
   // setters
-  public setId($id) {
+  public function setId($id) {
     $id = (int) $id;
 
     if ($id > 0)
     {
-      $this->_id = $id;
+      $this->id = $id;
     }
   }
-  public setUsername($username) {
+  public function setUsername($username) {
     $username = (string) $username;
     $this->username = $username;
   }
-  public setPassword($password) {
+  public function setPassword($password) {
     $password = (string) $password;
     $this->password = $password;
   }
-  public setEmail($email) {
+  public function setEmail($email) {
     $email = (string) $email;
     $this->email = $email;
   }

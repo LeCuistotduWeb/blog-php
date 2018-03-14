@@ -62,32 +62,16 @@ public function login($username, $password){
   */
   public function loginVerify($userObj){
     $resultat=[];
-    $req = $this->db->prepare('SELECT id, password FROM users WHERE username = :username');
+    $req = $this->db->prepare('SELECT username, id, email, password FROM users WHERE username = :username');
     $req->execute(array(
       'username' => $userObj->username()
     ));
     while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
-    $resultat[] = new Post($donnees);
-
-    $isPasswordCorrect = password_verify($donnees->password(), $userObj->passsword());
-    if (!$resultat)
-{
-    echo 'Mauvais identifiant ou mot de passe !';
-}
-else
-{
-    if ($isPasswordCorrect) {
-        session_start();
-        $_SESSION['id'] = $resultat['id'];
-        $_SESSION['pseudo'] = $pseudo;
-        echo 'Vous êtes connecté !';
+    $resultat = new User($donnees);
     }
-    else {
-        echo 'Mauvais identifiant ou mot de passe !';
+    $isPasswordCorrect = password_verify($userObj->password(), $resultat->passsword());
+    return $isPasswordCorrect;
     }
-
-  }
-}
 
   /**
    * connection bdd

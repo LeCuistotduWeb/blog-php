@@ -1,6 +1,7 @@
 <?php
 
 function login() {
+  $Session = new Session();
   require('view/frontend/loginView.php');
 }
 
@@ -22,10 +23,13 @@ function loginVerify($username, $password){
     'password'  => $password,
   ));
   $confirmUser = $userManager->loginVerify($userObj);
-  if ($confirmUser === false) {
-    throw new Exception('identifiant ou mot de passe inconnu');
+  if ($isPasswordCorrect) {
+      session_start();
+      $_SESSION['id'] = $resultat['id'];
+      $_SESSION['pseudo'] = $pseudo;
+      header('Location: index.php?action=backend');
   }
   else {
-    header('Location: index.php?action=backend');
+    echo 'Mauvais identifiant ou mot de passe !';
   }
 }

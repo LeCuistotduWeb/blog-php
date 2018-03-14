@@ -42,11 +42,13 @@
       </div>
 
       <!-- Pager -->
-      <!-- <div class="clearfix">
-        <a class="btn btn-primary float-right col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="index.php?action=oldPost">Anciens billets &rarr;</a>
-        <a class="btn btn-primary float-left col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="index.php?action=nextPost">&larr; Nouveaux billets</a>
+      <div class="clearfix">
+        <a class="btn btn-primary float-right col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="index.php?action=listPosts&page=<?= $page + 1; ?>">Anciens billets &rarr;</a>
+        <?php if($page != 1){?>
+          <a class="btn btn-primary float-left col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="index.php?action=listPosts&page=<?= $page - 1; ?>">&larr; Nouveaux billets</a>
+          <?php } ?>
       </div>
-    </div> -->
+    </div>
 
 </div>
 <?php $content = ob_get_clean(); ?>

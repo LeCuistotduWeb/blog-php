@@ -62,6 +62,17 @@ class CommentManager
 
         return $affectedLines;
     }
+    /**
+    * function deleteCommentPost
+    * supprime les commentaire d'un billet
+    * @param $id
+    */
+    public function deleteCommentPost($id) {
+        $comments = $this->db->prepare('DELETE FROM comments WHERE post_id = ?');
+        $affected = $comments->execute(array($id));
+
+        return $affected;
+    }
 
     /**
     * function modifyComment

@@ -27,4 +27,8 @@
  		}
  	}
 
+ 	public function disconnect(){
+    session_unset();
+    session_destroy();
+ 	}
  }

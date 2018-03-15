@@ -42,7 +42,7 @@
         </div>
 
         <div class="row mt-5">
-          <a href="index.php?action=createNewPost" class="btn btn-primary mt-1 col-lg-3 col-md-6 col-sm-12">Ajouter un billet</a>
+          <a href="createNewPost" class="btn btn-primary mt-1 col-lg-3 col-md-6 col-sm-12">Ajouter un billet</a>
           <a href="#reportList" class="btn btn-danger mt-1 ml-2 col-lg-3 col-md-6 col-sm-12">messages signalés</a>
         </div>
         <div class="row">
@@ -59,8 +59,8 @@
                 <div><?= $post->title(); ?></div>
               </div>
               <div class=" col-md-3 d-flex justify-content-md-end">
-                <button class="btn btn-warning p-2 "><a href="index.php?action=editPost&postId=<?= $post->id();?>"><i class="fa fa-edit text-white"></i> </a></button>
-                <button class="btn btn-danger p-2 ml-2"><a href="index.php?action=deletePost&postId=<?= $post->id();?>"><i class="fa fa-trash text-white"></i></a></button>
+                <button class="btn btn-warning p-2 "><a href="editPost&postId=<?= $post->id();?>"><i class="fa fa-edit text-white"></i> </a></button>
+                <button class="btn btn-danger p-2 ml-2"><a href="deletePost&postId=<?= $post->id();?>"><i class="fa fa-trash text-white"></i></a></button>
               </div>
             </div>
           </li>
@@ -83,8 +83,8 @@
                 <div class="comment-text"><?= htmlspecialchars($report->comment()); ?></div>
               </div>
               <div class="col-md-3 d-flex justify-content-md-end">
-                <button class="btn btn-success p-2"><a href="index.php?action=authorizedComment&commentId=<?= $report->id();?>"><i class="fa fa-check text-white"></i></a></button>
-                <button class="btn btn-danger p-2 ml-2"><a href="index.php?action=deleteComment&commentId=<?= $report->id();?>"><i class="fa fa-trash text-white"></i></a></button>
+                <button class="btn btn-success p-2"><a href="authorizedComment&commentId=<?= $report->id();?>"><i class="fa fa-check text-white"></i></a></button>
+                <button class="btn btn-danger p-2 ml-2"><a href="deleteComment&commentId=<?= $report->id();?>"><i class="fa fa-trash text-white"></i></a></button>
               </div>
             </div>
           </li>
@@ -97,5 +97,4 @@
       <!-- /.container-fluid-->
 
 <?php $content = ob_get_clean(); ?>
-
 <?php require('templateBackend.php'); ?>

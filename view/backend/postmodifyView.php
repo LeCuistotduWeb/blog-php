@@ -5,7 +5,7 @@
     <div class="container">
       <h1 class="mt-5">modifier le billet</h1>
 
-      <form class="mt-5" action="index.php?action=modifyPost&postId=<?= $post->id()?>" method="post" enctype="multipart/form-data">
+      <form class="mt-5" action="modifyPost&postId=<?= $post->id()?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="titleBillet">Titre : </label>
           <input type="text" class="form-control" id="title" name="title" value="<?= $post->title(); ?>">
@@ -17,7 +17,7 @@
         </div>
         <p>
           Image actuelle : <br>
-          <img src="public/img/<?= $post->post_thumbnail(); ?>" alt="" width="150px">
+          <img src="<?= PUBLICS ;?>img/<?= $post->post_thumbnail(); ?>" alt="" width="150px">
         </p>
         <div class="form-group">
           <label for="contentBillet">Contenu : </label>

@@ -11,9 +11,9 @@
         <!-- dernier billet -->
         <?php foreach ($lastPost as $donnees) { ?>
         <div class="post-preview first-post">
-          <a href="index.php?action=post&id=<?= $donnees->id(); ?>">
+          <a href="post&id=<?= $donnees->id(); ?>">
             <div class="first-post-thumb_container">
-              <img src="public/img/<?= $donnees->post_thumbnail(); ?>" alt="<?= $donnees->post_thumbnail(); ?>" class="firstpost-img">
+              <img src="<?= PUBLICS ;?>img/<?= $donnees->post_thumbnail(); ?>" alt="<?= $donnees->post_thumbnail(); ?>" class="firstpost-img">
             </div>
             <h3 class="post-title">
               <?= $donnees->title(); ?>
@@ -29,9 +29,9 @@
       <div class="row">
       <?php foreach ($posts as $post) { ?>
         <article class="post-preview col-md-6">
-          <a href="index.php?action=post&id=<?= $post->id()?>">
+          <a href="post&id=<?= $post->id()?>">
             <div class="post-thumb-content">
-              <img src="public/img/<?= $post->post_thumbnail()?>" alt="<?= $post->post_thumbnail()?>" class="post-img">
+              <img src="<?= PUBLICS ;?>img/<?= $post->post_thumbnail()?>" alt="<?= $post->post_thumbnail()?>" class="post-img">
             </div>
             <h3 class="post-title"><?= $post->title();?></h3>
             <p><?= $post->excerpt();?></p>
@@ -43,9 +43,9 @@
 
       <!-- Pager -->
       <div class="clearfix">
-        <a class="btn btn-primary float-right col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="index.php?action=listPosts&page=<?= $page + 1; ?>">Anciens billets &rarr;</a>
+        <a class="btn btn-primary float-right col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="listPosts&page=<?= $page + 1; ?>">Anciens billets &rarr;</a>
         <?php if($page != 1){?>
-          <a class="btn btn-primary float-left col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="index.php?action=listPosts&page=<?= $page - 1; ?>">&larr; Nouveaux billets</a>
+          <a class="btn btn-primary float-left col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="listPosts&page=<?= $page - 1; ?>">&larr; Nouveaux billets</a>
           <?php } ?>
       </div>
     </div>

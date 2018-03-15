@@ -1,66 +1,35 @@
 <?php
-
-// requires
 require_once 'config.php';
-require_once 'controller/frontend.php';
-require_once 'controller/backend.php';
-require_once 'controller/login.php';
+include_once(CONTROLLER.'FrontendController.php');
+include_once(CONTROLLER.'FrontendController.php');
+include_once(CONTROLLER.'BackendController.php');
 
 // Chargement de l'autoloader
-require_once 'model/Autoloader.php';
-Autoloader::register();
+include_once('model/Autoloader.php');
+Autoloader::start();
+
+// routeur
+$request = $_GET['action'];
+$routeur = new Routeur($request);
+$routeur->renderController();
 
 try {
-    if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'listPosts') {
-            listPosts($page = 1);
+    if (isset($request)) {
+        // front
+        if ($request == 'listPosts') {
+          $controller = new FrontendController();
+          $controller->listPosts($page = 1);
         }
-        elseif ($_GET['action'] == 'post') {
+        elseif ($request == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post($_GET['id']);
+              $controller = new FrontendController();
+              $controller->post($_GET['id']);
             }
             else {
               throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        elseif ($_GET['action'] == 'backend') {
-                backend();
-        }
-        elseif ($_GET['action'] == 'createNewPost') {
-          createNewPost();
-        }
-        elseif ($_GET['action'] == 'editPost') {
-          if(isset($_GET['postId'])){
-            editPost($_GET['postId']);
-          }else{
-            editPost();
-          }
-        }
-        elseif ($_GET['action'] == 'addPost') {
-          if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES)) {
-                addPost($_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
-              }
-              else {
-                  throw new Exception('Tous les champs ne sont pas remplis !');
-              }
-        }
-        elseif ($_GET['action'] == 'modifyPost') {
-          if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && isset($_FILES)){
-            modifyPost($_GET['postId'], $_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
-          }
-          else {
-              throw new Exception('Id de billet inconnu');
-          }
-        }
-        elseif ($_GET['action'] == 'deletePost') {
-            if (isset($_GET['postId']) && $_GET['postId'] > 0) {
-              deletePost($_GET['postId']);
-            }
-            else {
-                throw new Exception('Aucun identifiant de commentaire envoyé');
-            }
-        }
-        elseif ($_GET['action'] == 'addComment') {
+        elseif ($request == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['author']) && !empty($_POST['comment'])) {
                     addComment($_GET['id'], $_POST['author'], $_POST['comment']);
@@ -72,8 +41,47 @@ try {
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+          }
+
+        // back
+        elseif ($request == 'backend') {
+          BackendController::backend();
         }
-        elseif ($_GET['action'] == 'deleteComment') {
+        elseif ($request == 'createNewPost') {
+          BackendController::createNewPost();
+        }
+        elseif ($request == 'editPost') {
+          if(isset($_GET['postId'])){
+            BackendController::editPost($_GET['postId']);
+          }else{
+            BackendController::editPost();
+          }
+        }
+        elseif ($request == 'addPost') {
+          if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES)) {
+                BackendController::addPost($_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
+              }
+              else {
+                  throw new Exception('Tous les champs ne sont pas remplis !');
+              }
+        }
+        elseif ($request == 'modifyPost') {
+          if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && isset($_FILES)){
+            BackendController::modifyPost($_GET['postId'], $_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
+          }
+          else {
+              throw new Exception('Id de billet inconnu');
+          }
+        }
+        elseif ($request == 'deletePost') {
+            if (isset($_GET['postId']) && $_GET['postId'] > 0) {
+              BackendController::deletePost($_GET['postId']);
+            }
+            else {
+                throw new Exception('Aucun identifiant de commentaire envoyé');
+            }
+        }
+        elseif ($request == 'deleteComment') {
             if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
               deleteComment($_GET['commentId']);
             }
@@ -81,7 +89,7 @@ try {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
             }
         }
-        elseif ($_GET['action'] == 'authorizedComment') {
+        elseif ($request == 'authorizedComment') {
             if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
               authorizedComment($_GET['commentId']);
             }
@@ -89,7 +97,7 @@ try {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
             }
         }
-        elseif ($_GET['action'] == 'reportComment') {
+        elseif ($request == 'reportComment') {
             if (isset($_GET['commentId']) && $_GET['commentId'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
                 reportComment($_GET['commentId'],$_GET['postId']);
             }
@@ -98,13 +106,14 @@ try {
             }
         }
 
-        elseif ($_GET['action'] == 'disconnect') {
+        // login
+        elseif ($request == 'disconnect') {
           disconnect();
         }
-        elseif ($_GET['action'] == 'login') {
+        elseif ($request == 'login') {
           login();
         }
-        elseif ($_GET['action'] == 'loginVerify') {
+        elseif ($request == 'loginVerify') {
           if (!empty($_POST['username']) && !empty($_POST['password'])) {
             loginVerify($_POST['username'], $_POST['password']);
           }
@@ -113,9 +122,11 @@ try {
           }
         }
 
-        else { listPosts($page = 1); }
+        else { $controller = new FrontendController();
+        $controller->listPosts($page = 1); }
       }
-    else { listPosts($page= 1); }
+    else { $controller = new FrontendController();
+    $controller->listPosts($page= 1); }
 }
 catch(Exception $e) {
     echo 'Erreur : ' . $e->getMessage();

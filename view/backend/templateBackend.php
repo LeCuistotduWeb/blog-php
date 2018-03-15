@@ -19,33 +19,30 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
   <!-- Custom styles for this template -->
-  <link href="public/css/clean-blog.css" rel="stylesheet">
-
+  <link href="<?= PUBLICS ;?>css/clean-blog.css" rel="stylesheet" type="text/css">
 </head>
-
-<body>
 
   <body class="fixed-nav sticky-footer" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-dark bg-dark fixed-top d-flex jusify-content-center" id="mainNav">
       <div class="nav-item">
-        <a class="navbar-brand" href="index.php?action=backend">Administration</a>
+        <a class="navbar-brand" href="backend">Administration</a>
       </div>
       <div class="nav-item navbar-logo">
-        <img src="public/img/billet-simple-pour-l-alaska-logo-icon.png" alt="" width="50px">
+        <a href="#"><img src="<?= PUBLICS ;?>img/billet-simple-pour-l-alaska-logo-icon.png" alt="" width="50px"></a>
       </div>
       <div class="nav-item">
         <a class="nav-link text-white btn btn-logout" data-toggle="modal" data-target="#logout-modal">
         <i class="fa fa-fw fa-sign-out"></i>Déconnexion</a>
       </div>
-      </div>
     </nav>
     <!-- /navigation -->
+
     <div class="conaitner-fluid pt-3">
     <!-- messages errors -->
     <?php $Session->flash(); ?>
     <!-- messages errors -->
-  </div>
+    </div>
 
     <!-- Content -->
     <?= $content ?>
@@ -62,7 +59,7 @@
           <div class="modal-body">Voulez-vous vraimment vous deconnecter ?</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-            <a class="btn btn-primary" href="index.php?action=disconnect">Déconnexion</a>
+            <a class="btn btn-primary" href="disconnect">Déconnexion</a>
           </div>
           </div>
         </div>
@@ -78,7 +75,7 @@
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-      <script src="public/js/app.js" type="text/javascript"></script>
+      <script src="<?= PUBLICS ;?>js/app.js" type="text/javascript"></script>
   </body>
 
 </html>

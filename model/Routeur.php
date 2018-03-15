@@ -9,11 +9,11 @@ class Routeur
 
   private $request;
   private $routes = [
-    "backend"         =>  ["controller" => 'BackendController', "method" => 'backend'],
-    "createNewPost"   =>  ["controller" => 'BackendController', "method" => 'createNewPost'],
+    "backend"         =>  ["controller" => 'BackendController', "method"    => 'backend'],
+    "createNewPost"   =>  ["controller" => 'BackendController', "method"    => 'createNewPost'],
     "post"            =>  ["controller" => 'FrontendController',   "method" => 'Post'],
-    "listPosts"      =>  ["controller" => 'FrontendController',   "method" => 'listPosts'],
-    "d"      =>  ["controller" => 'FrontendController',   "method" => 'listPosts']
+    "listPosts"       =>  ["controller" => 'FrontendController',   "method" => 'listPosts'],
+    "d"               =>  ["controller" => 'FrontendController',   "method" => 'listPosts']
   ];
 
   function __construct($request)

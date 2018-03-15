@@ -10,20 +10,18 @@ Autoloader::start();
 
 // routeur
 $request = $_GET['action'];
-$routeur = new Routeur($request);
-$routeur->renderController();
+// $routeur = new Routeur($request);
+// $routeur->renderController();
 
 try {
     if (isset($request)) {
         // front
         if ($request == 'listPosts') {
-          $controller = new FrontendController();
-          $controller->listPosts($page = 1);
+          FrontendController::listPosts($page = 1);
         }
         elseif ($request == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-              $controller = new FrontendController();
-              $controller->post($_GET['id']);
+              FrontendController::post($_GET['id']);
             }
             else {
               throw new Exception('Aucun identifiant de billet envoyé');
@@ -32,7 +30,7 @@ try {
         elseif ($request == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                    FrontendController::addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis !');
@@ -58,7 +56,7 @@ try {
           }
         }
         elseif ($request == 'addPost') {
-          if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES)) {
+          if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES['post_thumbnail'])) {
                 BackendController::addPost($_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
               }
               else {
@@ -66,7 +64,7 @@ try {
               }
         }
         elseif ($request == 'modifyPost') {
-          if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && isset($_FILES)){
+          if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES['post_thumbnail'])){
             BackendController::modifyPost($_GET['postId'], $_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
           }
           else {
@@ -91,7 +89,7 @@ try {
         }
         elseif ($request == 'authorizedComment') {
             if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
-              authorizedComment($_GET['commentId']);
+              BackendController::authorizedComment($_GET['commentId']);
             }
             else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
@@ -99,7 +97,7 @@ try {
         }
         elseif ($request == 'reportComment') {
             if (isset($_GET['commentId']) && $_GET['commentId'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
-                reportComment($_GET['commentId'],$_GET['postId']);
+                FrontendController::reportComment($_GET['commentId'],$_GET['postId']);
             }
             else {
                 throw new Exception('Aucun identifiant de commentaire envoyé');
@@ -108,25 +106,23 @@ try {
 
         // login
         elseif ($request == 'disconnect') {
-          disconnect();
+          LoginController::disconnect();
         }
         elseif ($request == 'login') {
-          login();
+          LoginController::login();
         }
         elseif ($request == 'loginVerify') {
           if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            loginVerify($_POST['username'], $_POST['password']);
+            LoginController::loginVerify($_POST['username'], $_POST['password']);
           }
           else {
             throw new Exception('Tous les champs ne sont pas remplis !');
           }
         }
 
-        else { $controller = new FrontendController();
-        $controller->listPosts($page = 1); }
+        else { FrontendController::listPosts($page = 1); }
       }
-    else { $controller = new FrontendController();
-    $controller->listPosts($page= 1); }
+    else { FrontendController::listPosts($page= 1); }
 }
 catch(Exception $e) {
     echo 'Erreur : ' . $e->getMessage();

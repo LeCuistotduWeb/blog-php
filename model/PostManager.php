@@ -3,7 +3,7 @@ class PostManager
 {
     private $db;
 
-    public function __construct(){
+    function __construct(){
       $db = $this->getDb();
     }
     /**
@@ -115,7 +115,7 @@ class PostManager
     * verifie puis ajoute une image
     */
     public function addThumbnail($post_thumbnail){
-      if ($post_thumbnail[error] === 0){
+      if ($post_thumbnail['error'] === 0){
         $ext = strtolower(substr($post_thumbnail['name'],-3)); //recupere l'extension
         $allow_ext = array("jpg","png","gif","jpeg"); //extensions acceptée
 

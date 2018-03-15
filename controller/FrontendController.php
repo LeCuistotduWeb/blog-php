@@ -5,7 +5,7 @@
 class FrontendController
 {
 
-  public function listPosts($page) {
+  static public function listPosts($page) {
     $page=(!empty($_GET['page']) ? $_GET['page'] : 1);
     $Session = new Session();
     $postManager = new PostManager();
@@ -15,7 +15,7 @@ class FrontendController
     require(VIEW.'frontend/listPostsView.php');
   }
 
-  public function post($post_id) {
+  static public function post($post_id) {
     $Session = new Session();
     $postManager = new PostManager();
     $commentManager = new CommentManager();
@@ -26,7 +26,7 @@ class FrontendController
     require(VIEW.'frontend/postView.php');
   }
 
-  public function addComment($post_id, $author, $comment) {
+  static public function addComment($post_id, $author, $comment) {
     $Session = new Session();
     $commentManager = new CommentManager();
     $commentObj = new Comment(array(
@@ -45,7 +45,7 @@ class FrontendController
     header('Location: post&id=' . $post_id);
   }
 
-  public function reportComment($commentId,$postId) {
+  static public function reportComment($commentId,$postId) {
     $Session = new Session();
     $commentManager = new CommentManager();
     $reportComment = $commentManager->reportComment($commentId);

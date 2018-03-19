@@ -12,30 +12,6 @@ class UserManager
     $db = $this->getDb();
   }
 
-/**
- * verifie validité identifiant et mot de passe
- * @param $username
- * @param $password
- * @return boolean
- */
-public function login($username, $password){
-    $user = $this->db->prepare('SELECT * FROM users WHERE username = ?', [$username], null, true);
-    var_dump(password_hash($password));
-    if($user){
-        if($user->password === sha1($password)){
-            $_SESSION['auth'] = $user->id;
-            return true;
-        }
-    }
-    return false;
-}
-/**
- * verifier si connecté
- */
-  public function logged(){
-    return isset($_SESSION['auth']);
-  }
-
   /**
   * function addUser
   * ajoute un utilisateur
@@ -60,18 +36,17 @@ public function login($username, $password){
   * function loginVerify
   * verification utilisateur et mot de passe
   */
-  public function loginVerify($userObj){
-    $resultat=[];
-    $req = $this->db->prepare('SELECT username, id, email, password FROM users WHERE username = :username');
+  public function loginVerify($username){
+    $user = [];
+    $req = $this->db->prepare('SELECT id, username, password, email FROM users WHERE username = :username');
     $req->execute(array(
-      'username' => $userObj->username()
+      'username' => $username
     ));
     while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
-    $resultat = new User($donnees);
+    $user = new User($donnees);
     }
-    $isPasswordCorrect = password_verify($userObj->password(), $resultat->passsword());
-    return $isPasswordCorrect;
-    }
+    return $user;
+  }
 
   /**
    * connection bdd

@@ -9,7 +9,6 @@ class BackendController
     $Session = new Session();
     $commentManager = new CommentManager();
     $postManager = new postManager();
-
     $postCount = $postManager->postCount();
     $commentCount = $commentManager->commentCount();
     $reportCount = $commentManager->reportCount();
@@ -20,7 +19,6 @@ class BackendController
     if(isset($id)){
       $deleteComment = $commentManager->deleteComment($id);
     }
-
     require(VIEW.'backend/backendView.php');
   }
 
@@ -40,22 +38,12 @@ class BackendController
     $Session = new Session();
     $postManager = new postManager();
     $modifyPost = $postManager->addThumbnail($post_thumbnail);
-    if(empty($post_thumbnail[''])){
-      $postObj = new post(array(
-        'id'             => $post_id,
-        'title'          => $title,
-        'content'        => $content,
-        'post_thumbnail' => $post_thumbnail['name']
-      ));
-    }
-    else{
-      $postObj = new post(array(
-        'id'             => $post_id,
-        'title'          => $title,
-        'content'        => $content
-      ));
-    }
-
+    $postObj = new post(array(
+      'id'             => $post_id,
+      'title'          => $title,
+      'content'        => $content,
+      'post_thumbnail' => $post_thumbnail['name']
+    ));
     $modifyPost = $postManager->modifyPost($postObj);
     if ($modifyPost === false) {
         $Session->setFlash('Impossible de modifier le billet !','danger');
@@ -130,11 +118,5 @@ class BackendController
       $Session->setFlash('Le commentaire a bien été validé','success');
     }
     header('Location: backend');
-  }
-
-  public static function disconnect() {
-    $session = new Session();
-    $session->disconnect();
-    header('Location: listsPost');
   }
 }

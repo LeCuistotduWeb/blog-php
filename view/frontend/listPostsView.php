@@ -43,7 +43,9 @@
 
       <!-- Pager -->
       <div class="clearfix">
+        <?php if($page < PostManager::$nbPage){?>
         <a class="btn btn-primary float-right col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="listPosts&page=<?= $page + 1; ?>">Anciens billets &rarr;</a>
+      <?php } ?>
         <?php if($page != 1){?>
           <a class="btn btn-primary float-left col-xs-6 col-sm-5 col-lg-3 mb-2 px-2" href="listPosts&page=<?= $page - 1; ?>">&larr; Nouveaux billets</a>
           <?php } ?>

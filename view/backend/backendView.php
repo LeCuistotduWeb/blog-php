@@ -12,7 +12,7 @@
                   <i class="fa fa-fw fa-edit"></i>
                 </div>
                 <div class="mr-5">Nb de Billets :</div>
-                <div class="mr-5 card-nb"><?= $postCount ?></div>
+                <div class="mr-5 card-nb"><?= htmlspecialchars($postCount) ?></div>
               </div>
             </div>
           </div>
@@ -23,7 +23,7 @@
                   <i class="fa fa-fw fa-comments"></i>
                 </div>
                 <div class="mr-5">Nb de commentaires :</div>
-                <div class="mr-5 card-nb"><?= $commentCount ?></div>
+                <div class="mr-5 card-nb"><?= htmlspecialchars($commentCount) ?></div>
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@
                   <i class="fa fa-fw fa-exclamation-triangle"></i>
                 </div>
                 <div class="mr-5">Nb de messages signalés :</div>
-                <div class="mr-5 card-nb"><?= $reportCount ?></div>
+                <div class="mr-5 card-nb"><?= htmlspecialchars($reportCount) ?></div>
               </div>
             </div>
           </div>
@@ -64,7 +64,6 @@
               </div>
             </div>
           </li>
-
           <?php } ?>
         </ul>
         <!-- list posts -->

@@ -11,7 +11,7 @@ class User
   private $password;
   private $email;
 
-  public function __construct(array $donnees) {
+  function __construct(array $donnees) {
     $this->hydrate($donnees);
   }
 

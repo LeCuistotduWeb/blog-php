@@ -2,6 +2,7 @@
 class PostManager
 {
     private $db;
+    static public $nbPage;
 
     function __construct(){
       $db = $this->getDb();
@@ -12,7 +13,8 @@ class PostManager
     */
     public function posts($page) {
       $limite = (int) 4;
-
+      $nbPost = $this->postCount();
+      self::$nbPage =  ceil($nbPost / $limite);
       $posts = [];
       $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT '.(($page - 1) * $limite).','.$limite);
 
@@ -115,16 +117,18 @@ class PostManager
     * verifie puis ajoute une image
     */
     public function addThumbnail($post_thumbnail){
-      if ($post_thumbnail['error'] === 0){
+      if ($post_thumbnail['error'] == 0){
         $ext = strtolower(substr($post_thumbnail['name'],-3)); //recupere l'extension
         $allow_ext = array("jpg","png","gif","jpeg"); //extensions acceptée
 
         if(in_array($ext,$allow_ext)){ //verifie l'extension sinon message erreur
           move_uploaded_file($post_thumbnail['tmp_name'], "public/img/".$post_thumbnail['name']);
+        }else{
+          return $post_thumbnail;
         }
       }
+      return false;
 
-      return $post_thumbnail;
       }
     /**
     * function getDb
@@ -134,6 +138,7 @@ class PostManager
       if($this->db === NULL) {
         $db = new PDO('mysql:host=localhost;dbname=blog-php;charset=utf8', 'root', '');
         $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
         $this->db = $db;
       }
       return $db;

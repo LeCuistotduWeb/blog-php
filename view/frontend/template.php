@@ -17,7 +17,7 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
   <!-- Custom styles for this template -->
-  <link href="<?= PUBLICS ;?>css/clean-blog.css" rel="stylesheet">
+  <link href="<?= PUBLICS ;?>css/styles.css" rel="stylesheet">
 
 </head>
 
@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col-lg-10 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1><a href="index.php#"><img src="<?= PUBLICS ;?>img/billet-simple-pour-l-alaska-logo-icon.png" alt="billet simple pour l'alaska logo icon" width="250px"></a><br>
+            <h1><a href="index.php"><img src="<?= PUBLICS ;?>img/billet-simple-pour-l-alaska-logo-icon.png" alt="billet simple pour l'alaska logo icon" width="250px"></a><br>
             <?=$heading?></h1>
             <span class="subheading"><?=$subHeading?></span>
           </div>
@@ -42,7 +42,6 @@
     </div>
   </header>
   <!-- /header -->
-
 
   <!-- content -->
   <?= $content;?>

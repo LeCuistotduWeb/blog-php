@@ -10,7 +10,7 @@ class Post
     private $creation_date;
     private $post_thumbnail;
 
-    public function __construct(array $donnees) {
+    function __construct(array $donnees) {
       $this->hydrate($donnees);
     }
 

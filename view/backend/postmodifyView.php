@@ -17,7 +17,9 @@
         </div>
         <p>
           Image actuelle : <br>
+          <?php if(!empty($post->post_thumbnail())){?>
           <img src="<?= PUBLICS ;?>img/<?= $post->post_thumbnail(); ?>" alt="" width="150px">
+        <?php } else{echo 'aucune image mise en avant ';}?>
         </p>
         <div class="form-group">
           <label for="contentBillet">Contenu : </label>

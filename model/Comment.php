@@ -11,7 +11,7 @@ class Comment
     private $comment_date;
     private $report;
 
-    public function __construct(array $donnees) {
+    function __construct(array $donnees) {
       $this->hydrate($donnees);
     }
 

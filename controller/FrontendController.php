@@ -11,7 +11,6 @@ class FrontendController
     $postManager = new PostManager();
     $posts = $postManager->posts($page);
     $lastPost = $postManager->lastPost();
-
     require(VIEW.'frontend/listPostsView.php');
   }
 

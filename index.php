@@ -6,7 +6,7 @@ include_once(CONTROLLER.'BackendController.php');
 include_once(CONTROLLER.'LoginController.php');
 
 // Chargement de l'autoloader
-include_once('model/Autoloader.php');
+include_once(MODEL.'Autoloader.php');
 Autoloader::start();
 // var_dump($_SESSION);
 if(isset($_GET['action'])){

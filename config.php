@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 $root = $_SERVER['DOCUMENT_ROOT'];
 $host = $_SERVER['HTTP_HOST'];
 
-define('ROOT', $root.'/Blog-mvc/');
+define('ROOT', $root.'/Blog-mvc/app/');
 define('HOST', 'http://'.$host.'/Blog-mvc/');
 
 

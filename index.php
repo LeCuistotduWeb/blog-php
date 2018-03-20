@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'config.php';
 include_once(CONTROLLER.'FrontendController.php');
 include_once(CONTROLLER.'BackendController.php');
@@ -7,11 +8,10 @@ include_once(CONTROLLER.'LoginController.php');
 // Chargement de l'autoloader
 include_once('model/Autoloader.php');
 Autoloader::start();
-
+// var_dump($_SESSION);
 if(isset($_GET['action'])){
   $request = $_GET['action'];
 }
-$Sessions = new Session();
 try {
   if (isset($request)) {
     // front
@@ -65,56 +65,92 @@ try {
 
     // back
     elseif ($request == 'backend') {
-      BackendController::backend();
+      if(Session::islogged()){
+        BackendController::backend();
+      }else{
+        Session::setFlash('vous n\'avez pas acces a cette page.','danger');
+        LoginController::login();
+      }
     }
     elseif ($request == 'createNewPost') {
-      BackendController::createNewPost();
+      if(Session::islogged()){
+        BackendController::createNewPost();
+      }else{
+        Session::setFlash('vous n\'avez pas acces a cette page.','danger');
+        LoginController::login();
+      }
     }
     elseif ($request == 'editPost') {
-      if(isset($_GET['postId'])){
+      if(Session::islogged()){
         BackendController::editPost($_GET['postId']);
       }else{
-        BackendController::editPost();
+        Session::setFlash('vous n\'avez pas acces a cette page.','danger');
+        LoginController::login();
       }
     }
     elseif ($request == 'addPost') {
-      if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES['post_thumbnail'])) {
-        BackendController::addPost($_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
-      }
-      else {
-        throw new Exception('Tous les champs ne sont pas remplis !');
+      if(Session::islogged()){
+        if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES['post_thumbnail'])) {
+          BackendController::addPost($_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
+        }
+        else {
+          throw new Exception('Tous les champs ne sont pas remplis !');
+        }
+      }else{
+        Session::setFlash('vous n\'avez pas acces a cette page.','danger');
+        LoginController::login();
       }
     }
     elseif ($request == 'modifyPost') {
-      if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES)){
-        BackendController::modifyPost($_GET['postId'], $_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
-      }
-      else {
-        throw new Exception('tout les champs n\'on pas été remplis');
+      if(Session::islogged()){
+        if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES)){
+          BackendController::modifyPost($_GET['postId'], $_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
+        }
+        else {
+          throw new Exception('tout les champs n\'on pas été remplis');
+        }
+      }else{
+        Session::setFlash('vous n\'avez pas acces a cette page.','danger');
+        LoginController::login();
       }
     }
     elseif ($request == 'deletePost') {
-      if (isset($_GET['postId']) && $_GET['postId'] > 0) {
-        BackendController::deletePost($_GET['postId']);
-      }
-      else {
-        throw new Exception('Aucun identifiant de commentaire envoyé');
+      if(Session::islogged()){
+        if (isset($_GET['postId']) && $_GET['postId'] > 0) {
+          BackendController::deletePost($_GET['postId']);
+        }
+        else {
+          throw new Exception('Aucun identifiant de commentaire envoyé');
+        }
+      }else{
+        Session::setFlash('vous n\'avez pas acces a cette page.','danger');
+        LoginController::login();
       }
     }
     elseif ($request == 'deleteComment') {
-      if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
-        deleteComment($_GET['commentId']);
-      }
-      else {
-        throw new Exception('Aucun identifiant de commentaire envoyé');
+      if(Session::islogged()){
+        if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
+          BackendController::deleteComment($_GET['commentId']);
+        }
+        else {
+          throw new Exception('Aucun identifiant de commentaire envoyé');
+        }
+      }else{
+        Session::setFlash('vous n\'avez pas acces a cette page.','danger');
+        LoginController::login();
       }
     }
     elseif ($request == 'authorizedComment') {
-      if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
-        BackendController::authorizedComment($_GET['commentId']);
-      }
-      else {
-        throw new Exception('Aucun identifiant de commentaire envoyé');
+      if(Session::islogged()){
+        if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
+          BackendController::authorizedComment($_GET['commentId']);
+        }
+        else {
+          throw new Exception('Aucun identifiant de commentaire envoyé');
+        }
+      }else{
+        Session::setFlash('vous n\'avez pas acces a cette page.','danger');
+        LoginController::login();
       }
     }
 

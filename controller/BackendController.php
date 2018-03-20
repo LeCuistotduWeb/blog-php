@@ -46,11 +46,11 @@ class BackendController
     ));
     $modifyPost = $postManager->modifyPost($postObj);
     if ($modifyPost === false) {
-        $Session->setFlash('Impossible de modifier le billet !','danger');
+        Session::setFlash('Impossible de modifier le billet !','danger');
         header('Location: backend');
     }
     else {
-        $Session->setFlash('Le billet a bien été modifié','success');
+        Session::setFlash('Le billet a bien été modifié','success');
         header('Location: backend');
       }
   }
@@ -66,10 +66,10 @@ class BackendController
     ));
     $addPost = $postManager->addPost($postObj);
     if ($newPost === false) {
-      $Session->setFlash('Impossible d\'ajouter le billet !','danger');
+      Session::setFlash('Impossible d\'ajouter le billet !','danger');
     }
     else {
-      $Session->setFlash('Le billet a bien été ajouté','success');
+      Session::setFlash('Le billet a bien été ajouté','success');
     }
     header('Location: backend');
   }
@@ -80,10 +80,10 @@ class BackendController
     $affectedLines = $commentManager->deleteComment($id);
 
     if ($affectedLines === false) {
-      $Session->setFlash('Impossible de supprimer le commentaire !','danger');
+      Session::setFlash('Impossible de supprimer le commentaire !','danger');
     }
     else {
-      $Session->setFlash('Le commentaire a bien été supprimé','danger');
+      Session::setFlash('Le commentaire a bien été supprimé','danger');
     }
     header('Location: backend');
   }
@@ -97,10 +97,10 @@ class BackendController
     $affectedLines = $commentManager->deleteCommentPost($id);
 
     if ($affectedLines === false) {
-      $Session->setFlash('Impossible de supprimer le billet !','danger');
+      Session::setFlash('Impossible de supprimer le billet !','danger');
     }
     else {
-      $Session->setFlash('le billet a bien été supprimé','success');
+      Session::setFlash('le billet a bien été supprimé','success');
     }
     header('Location: backend');
   }
@@ -112,10 +112,10 @@ class BackendController
     $affectedLines = $commentManager->authorizedComment($commentId);
 
     if ($affectedLines === false) {
-      $Session->setFlash('Impossible d\'autorisé le commentaire !','danger');
+      Session::setFlash('Impossible d\'autorisé le commentaire !','danger');
     }
     else {
-      $Session->setFlash('Le commentaire a bien été validé','success');
+      Session::setFlash('Le commentaire a bien été validé','success');
     }
     header('Location: backend');
   }

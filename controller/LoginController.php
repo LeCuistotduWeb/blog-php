@@ -30,19 +30,19 @@ class LoginController
     ));
     $confirmUser = $userManager->loginVerify($username);
     if($confirmUser == false){
-      $Session->setFlash('Mauvais identifiant ou mot de passe !','danger');
+      Session::setFlash('Mauvais identifiant ou mot de passe !','danger');
       header('Location: login');
     }
     else{
       // verifié password
       $isPasswordCorrect = password_verify($password, $confirmUser->password());
       if ($isPasswordCorrect == true) {
-        $Session->setFlash('Vous êtes connecté !','success');
+        Session::setFlash('Vous êtes connecté !','success');
         $_SESSION['auth'] = $confirmUser->username();
         header('Location: backend');
       }
       else {
-        $Session->setFlash('Mauvais identifiant ou mot de passe !','danger');
+        Session::setFlash('Mauvais identifiant ou mot de passe !','danger');
         header('Location: login');
       }
     }

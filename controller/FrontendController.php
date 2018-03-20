@@ -36,10 +36,10 @@ class FrontendController
     $newComment = $commentManager->addComment($commentObj);
 
     if ($newComment === false) {
-        $Session->setFlash('Impossible d\'ajouter le commentaire !','danger');
+        Session::setFlash('Impossible d\'ajouter le commentaire !','danger');
     }
     else {
-      $Session->setFlash('le commentaire a bien été ajouté','success');
+      Session::setFlash('le commentaire a bien été ajouté','success');
     }
     header('Location: post&id=' . $post_id);
   }
@@ -48,7 +48,7 @@ class FrontendController
     $Session = new Session();
     $commentManager = new CommentManager();
     $reportComment = $commentManager->reportComment($commentId);
-    $Session->setFlash('le commentaire a bien été signalé','warning');
+    Session::setFlash('le commentaire a bien été signalé','warning');
     header('Location: post&id=' . $postId);
   }
 }

@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col-lg-10 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1><a href="index.php"><img src="<?= PUBLICS ;?>img/billet-simple-pour-l-alaska-logo-icon.png" alt="billet simple pour l'alaska logo icon" width="250px"></a><br>
+            <h1><a href="listPosts"><img src="<?= PUBLICS ;?>img/billet-simple-pour-l-alaska-logo-icon.png" alt="billet simple pour l'alaska logo icon" width="250px"></a><br>
             <?=$heading?></h1>
             <span class="subheading"><?=$subHeading?></span>
           </div>

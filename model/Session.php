@@ -6,7 +6,7 @@
  class Session{
 
  	public function __construct(){
- 		// session_start();
+    
  	}
 
   /**
@@ -30,8 +30,8 @@
  			<div id="alert" class="alert alert-<?php echo $_SESSION['flash']['type']; ?>">
  				<?php echo $_SESSION['flash']['message']; ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+          <span aria-hidden="true">&times;</span>
+        </button>
  			</div>
  			<?php
  			unset($_SESSION['flash']);

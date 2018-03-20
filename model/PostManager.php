@@ -1,4 +1,5 @@
 <?php
+
 class PostManager
 {
     private $db;

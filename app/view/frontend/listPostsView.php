@@ -20,7 +20,7 @@
             </h3>
             <p><?= $donnees->excerpt() ;?></p>
           </a>
-          <p class="post-meta">Publié le : <?= $donnees->creation_date(); ?></p>
+          <p class="post-meta">Publié le : <?= $donnees->creation_date_fr(); ?></p>
         </div>
         <?php } ?>
         <!-- dernier billet -->
@@ -36,7 +36,7 @@
             <h3 class="post-title"><?= $post->title();?></h3>
             <p><?= $post->excerpt();?></p>
           </a>
-          <p class="post-meta">Publié le : <?= $post->creation_date();?></p>
+          <p class="post-meta">Publié le : <?= $post->creation_date_fr();?></p>
         </article>
         <?php } ?>
       </div>

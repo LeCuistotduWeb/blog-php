@@ -55,7 +55,7 @@
           <li class="list-group-item col-12">
             <div class="post row d-flex align-items-center ">
               <div class="col-md-9">
-                <div class="font-weight-bold">Edité le: <?= $post->creation_date();?></div>
+                <div class="font-weight-bold">Edité le: <?= $post->creation_date_fr();?></div>
                 <div><?= $post->title(); ?></div>
               </div>
               <div class=" col-md-3 d-flex justify-content-md-end">
@@ -78,7 +78,7 @@
           <li class="list-group-item col-12 border-danger">
             <div class="post row d-flex align-items-center">
               <div class="col-md-9">
-                <div class="font-weight-bold"><?= htmlspecialchars($report->author()); ?> le : <span class="comment-date"><?= htmlspecialchars($report->comment_date()); ?></span></div>
+                <div class="font-weight-bold"><?= htmlspecialchars($report->author()); ?> le : <span class="comment-date"><?= htmlspecialchars($report->comment_date_fr()); ?></span></div>
                 <div class="comment-text"><?= htmlspecialchars($report->comment()); ?></div>
               </div>
               <div class="col-md-3 d-flex justify-content-md-end">

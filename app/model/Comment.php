@@ -9,6 +9,7 @@ class Comment
     private $author;
     private $comment;
     private $comment_date;
+    private $comment_date_fr;
     private $report;
 
     function __construct(array $donnees) {
@@ -39,6 +40,7 @@ class Comment
     public function author() { return $this->author; }
     public function comment() { return $this->comment; }
     public function comment_date() { return $this->comment_date; }
+    public function comment_date_fr() { return $this->comment_date_fr; }
     public function report() { return $this->report; }
 
     // setters
@@ -68,6 +70,9 @@ class Comment
     }
     public function setComment_date($comment_date) {
       $this->comment_date = $comment_date;
+    }
+    public function setComment_date_fr($comment_date_fr) {
+      $this->comment_date_fr = $comment_date_fr;
     }
     public function setReport($report) {
       $report = (BOOL) $report;

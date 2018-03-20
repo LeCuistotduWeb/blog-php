@@ -17,7 +17,7 @@ class PostManager
       $nbPost = $this->postCount();
       self::$nbPage =  ceil($nbPost / $limite);
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC LIMIT '.(($page - 1) * $limite).','.$limite);
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y à %Hh%imin") AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT '.(($page - 1) * $limite).','.$limite);
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -27,7 +27,7 @@ class PostManager
 
     public function backendPosts() {
       $posts = [];
-      $req = $this->db->query('SELECT id, title, content, post_thumbnail, creation_date FROM posts ORDER BY creation_date DESC');
+      $req = $this->db->query('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y à %Hh%imin") AS creation_date_fr FROM posts ORDER BY creation_date DESC');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $posts[] = new Post($donnees);
@@ -41,7 +41,7 @@ class PostManager
     * @param $postid
     */
     public function post($postId) {
-        $req = $this->db->prepare('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y") AS creation_date FROM posts WHERE id = ?');
+        $req = $this->db->prepare('SELECT id, title, content, post_thumbnail, DATE_FORMAT(creation_date, "%d-%m-%Y à %Hh%imin") AS creation_date_fr FROM posts WHERE id = ?');
         $req->execute(array($postId));
 
         $donnees = $req->fetch(PDO::FETCH_ASSOC);
@@ -56,7 +56,7 @@ class PostManager
     */
     public function lastPost() {
 
-      $req = $this->db->query('SELECT id, title, content, creation_date , post_thumbnail FROM posts ORDER BY creation_date DESC LIMIT 1');
+      $req = $this->db->query('SELECT id, title, content, DATE_FORMAT(creation_date, "%d-%m-%Y à %Hh%imin") AS creation_date_fr , post_thumbnail FROM posts ORDER BY creation_date DESC LIMIT 1');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $lastPost[] = new Post($donnees);

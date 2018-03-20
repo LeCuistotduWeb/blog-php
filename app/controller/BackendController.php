@@ -8,7 +8,7 @@ class BackendController
   public static function backend() {
     $Session = new Session();
     $commentManager = new CommentManager();
-    $postManager = new postManager();
+    $postManager = new PostManager();
     $postCount = $postManager->postCount();
     $commentCount = $commentManager->commentCount();
     $reportCount = $commentManager->reportCount();
@@ -29,14 +29,14 @@ class BackendController
 
   public static function editPost($post_id) {
     $Session = new Session();
-    $postManager = new postManager();
+    $postManager = new PostManager();
     $post = $postManager->post($post_id);
     require(VIEW.'backend/postModifyView.php');
   }
 
   public static function modifyPost($post_id, $title, $content, $post_thumbnail) {
     $Session = new Session();
-    $postManager = new postManager();
+    $postManager = new PostManager();
     $modifyPost = $postManager->addThumbnail($post_thumbnail);
     $postObj = new post(array(
       'id'             => $post_id,
@@ -57,9 +57,9 @@ class BackendController
 
   public static function addPost($title, $content, $post_thumbnail) {
     $Session = new Session();
-    $postManager = new postManager();
+    $postManager = new PostManager();
     $modifyPost = $postManager->addThumbnail($post_thumbnail);
-    $postObj = new post(array(
+    $postObj = new Post(array(
       'title'            => $title,
       'content'          => $content,
       'post_thumbnail'   => $post_thumbnail['name']
@@ -90,7 +90,7 @@ class BackendController
 
   public static function deletePost($id) {
     $Session = new Session();
-    $postManager = new postManager();
+    $postManager = new PostManager();
     $affectedLines = $postManager->deletePost($id);
 
     $commentManager = new CommentManager();

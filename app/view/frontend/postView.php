@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <?php $title = htmlspecialchars($post->title()); ?>
-<?php $subHeading = htmlspecialchars($post->creation_date()); ?>
+<?php $subHeading = htmlspecialchars($post->creation_date_fr()); ?>
 <?php $heading = htmlspecialchars($post->title()); ?>
 
 <!-- content -->
@@ -54,7 +54,7 @@
           <?php foreach ($comments as $comment){?>
           <!-- commentaire -->
           <div class="comment-content comment-wrap border-bottom border-left border-dark mb-4 p-2 ">
-            <div class="comment-name"><span class="font-weight-bold"><?= htmlspecialchars($comment->author()); ?></span> le : <span class="comment-date"><?= $comment->comment_date(); ?></span></div>
+            <div class="comment-name"><span class="font-weight-bold"><?= htmlspecialchars($comment->author()); ?></span> le : <span class="comment-date"><?= $comment->comment_date_fr(); ?></span></div>
             <div class="comment-text text-justify text-sm-left"><?= htmlspecialchars($comment->comment()); ?></div>
             <div class="text-right"><a href="index.php?action=reportComment&postId=<?= $post->id();?>&commentId=<?= $comment->id(); ?>">Signaler</a></div>
           </div>

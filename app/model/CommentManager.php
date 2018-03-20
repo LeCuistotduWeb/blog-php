@@ -15,7 +15,7 @@ class CommentManager
     */
     public function comments($postId) {
       $comments = [];
-      $req = $this->db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d-%m-%Y %Hh%imin%ss") AS comment_date FROM comments WHERE post_id = ? AND report = 0 ORDER BY comment_date DESC');
+      $req = $this->db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d-%m-%Y à %Hh%imin") AS comment_date_fr FROM comments WHERE post_id = ? AND report = 0 ORDER BY comment_date DESC');
       $req->execute(array($postId));
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -95,7 +95,7 @@ class CommentManager
     */
     public function reportList() {
       $reportList = [];
-      $req = $this->db->query('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d-%m-%Y %Hh%imin%ss") AS comment_date, report FROM comments WHERE report = true ORDER BY comment_date DESC');
+      $req = $this->db->query('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d-%m-%Y à %Hh%imin") AS comment_date_fr, report FROM comments WHERE report = true ORDER BY comment_date DESC');
 
       while ($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
       $reportList[] = new Comment($donnees);
@@ -110,7 +110,7 @@ class CommentManager
     */
     public function reportComment($commentId) {
         $req = $this->db->prepare('UPDATE comments SET report=:report WHERE id=:id');
-        $req->execute(array(
+        $affectedLines = $req->execute(array(
           'report' => true,
           'id'     => $commentId
         ));

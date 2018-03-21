@@ -38,7 +38,7 @@ class BackendController
     $Session = new Session();
     $postManager = new PostManager();
     $modifyPost = $postManager->addThumbnail($post_thumbnail);
-    $postObj = new post(array(
+    $postObj = new Post(array(
       'id'             => $post_id,
       'title'          => $title,
       'content'        => $content,

@@ -119,8 +119,8 @@ class PostManager
     */
     public function addThumbnail($post_thumbnail){
       if ($post_thumbnail['error'] == 0){
-        $ext = strtolower(substr($post_thumbnail['name'],-3)); //recupere l'extension
         $allow_ext = array("jpg","png","gif","jpeg"); //extensions acceptée
+        $ext = strtolower(substr($post_thumbnail['name'],-3)); //recupere l'extension
 
         if(in_array($ext,$allow_ext)){ //verifie l'extension sinon message erreur
           move_uploaded_file($post_thumbnail['tmp_name'], "public/img/".$post_thumbnail['name']);

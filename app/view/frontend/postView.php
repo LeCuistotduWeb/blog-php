@@ -3,6 +3,7 @@
 <?php $title = htmlspecialchars($post->title()); ?>
 <?php $subHeading = htmlspecialchars($post->creation_date_fr()); ?>
 <?php $heading = htmlspecialchars($post->title()); ?>
+<?php $post_thumbnail = $post->post_thumbnail(); ?>
 
 <!-- content -->
 <!-- Post Content -->

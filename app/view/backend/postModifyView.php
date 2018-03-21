@@ -1,4 +1,4 @@
-<?php $title = "Billet simple pour l'Alaska | Edition d'article" ?>
+<?php $title = "Billet simple pour l'Alaska | Modification d'article" ?>
 <?php ob_start(); ?>
 
   <!-- content -->

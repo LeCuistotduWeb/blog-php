@@ -24,7 +24,7 @@
 <body>
 
   <!-- header -->
-  <header class="masthead" style="background-image: url('<?= PUBLICS ;?>img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('<?= PUBLICS ;?>img/<?php if(isset($post_thumbnail)){echo $post_thumbnail;}else{echo 'home-bg.jpg';}?>')">
     <div class="overlay"></div>
     <div class="container">
       <!-- messages errors -->

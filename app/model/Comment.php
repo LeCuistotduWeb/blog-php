@@ -72,7 +72,7 @@ class Comment
       $this->comment_date = $comment_date;
     }
     public function setComment_date_fr($comment_date_fr) {
-      $this->comment_date_fr = $comment_date_fr;
+      $this->comment_date_fr = $comment_date_fr; 
     }
     public function setReport($report) {
       $report = (BOOL) $report;

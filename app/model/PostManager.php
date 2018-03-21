@@ -1,13 +1,9 @@
 <?php
 
-class PostManager
+class PostManager extends Database
 {
-    private $db;
     static public $nbPage;
 
-    function __construct(){
-      $db = $this->getDb();
-    }
     /**
     * function getPosts
     * retourne tout les article
@@ -129,19 +125,5 @@ class PostManager
         }
       }
       return false;
-
       }
-    /**
-    * function getDb
-    * connection bdd
-    */
-    public function getDb(){
-      if($this->db === NULL) {
-        $db = new PDO('mysql:host=localhost;dbname=blog-php;charset=utf8', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
-        $this->db = $db;
-      }
-      return $db;
-    }
 }

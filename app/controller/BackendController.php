@@ -83,7 +83,7 @@ class BackendController
       Session::setFlash('Impossible de supprimer le commentaire !','danger');
     }
     else {
-      Session::setFlash('Le commentaire a bien été supprimé','danger');
+      Session::setFlash('Le commentaire a bien été supprimé','success');
     }
     header('Location: backend');
   }

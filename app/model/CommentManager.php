@@ -1,12 +1,7 @@
 <?php
-class CommentManager
+class CommentManager extends Database
 {
-    private $db;
     private $reportNbn=[];
-
-    public function __construct(){
-      $db = $this->getDb();
-    }
 
     /**
     * function getComments
@@ -127,15 +122,5 @@ class CommentManager
         $donnees = $req->fetch(PDO::FETCH_ASSOC);
 
         return $donnees['reportNb'];
-    }
-
-    public function getDb(){
-      if($this->db === NULL) {
-        $db = new PDO('mysql:host=localhost;dbname=blog-php;charset=utf8', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
-        $this->db = $db;
-      }
-      return $db;
     }
 }

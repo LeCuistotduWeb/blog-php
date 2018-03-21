@@ -3,14 +3,8 @@
 /**
  * class UserManager
  */
-class UserManager
+class UserManager extends Database
 {
-
-  private $db;
-
-  public function __construct(){
-    $db = $this->getDb();
-  }
 
   /**
   * function addUser
@@ -46,17 +40,5 @@ class UserManager
     $user = new User($donnees);
     }
     return $user;
-  }
-
-  /**
-   * connection bdd
-   */
-  public function getDb(){
-    if($this->db === NULL) {
-      $db = new PDO('mysql:host=localhost;dbname=blog-php;charset=utf8', 'root', '');
-      $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-      $this->db = $db;
-    }
-    return $db;
   }
 }

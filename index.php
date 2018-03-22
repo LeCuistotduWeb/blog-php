@@ -22,7 +22,8 @@ try {
           FrontendController::post($_GET['id']);
         }
         else {
-          throw new Exception('Aucun identifiant de billet envoyé');
+          Session::setFlash('Aucun identifiant de billet envoyé.','danger');
+          FrontendController::listPosts();
         }
     }
     elseif ($request == 'addComment') {
@@ -31,11 +32,13 @@ try {
                 FrontendController::addComment($_GET['id'], $_POST['author'], $_POST['comment']);
             }
             else {
-                throw new Exception('Tous les champs ne sont pas remplis !');
+              Session::setFlash('Tous les champs ne sont pas remplis !','warning');
+              FrontendController::post($_GET['id']);
             }
         }
         else {
-            throw new Exception('Aucun identifiant de billet envoyé');
+          Session::setFlash('Aucun identifiant de billet envoyé','warning');
+          FrontendController::post($_GET['id']);
         }
       }
     elseif ($request == 'reportComment') {
@@ -43,7 +46,8 @@ try {
         FrontendController::reportComment($_GET['commentId'],$_GET['postId']);
       }
       else {
-        throw new Exception('Aucun identifiant de commentaire envoyé');
+        Session::setFlash('Impossible de signaler ce commentaires','warning');
+        FrontendController::post($_GET['id']);
       }
     }
 
@@ -58,7 +62,8 @@ try {
       if(!empty($_POST['username']) && !empty($_POST['password'])) {
         LoginController::loginVerify($_POST['username'], $_POST['password']);
       }else {
-        throw new Exception('Tous les champs ne sont pas remplis !');
+        Session::setFlash('Tous les champs ne sont pas remplis !','warning');
+        LoginController::login();
       }
     }
 
@@ -93,7 +98,8 @@ try {
           BackendController::addPost($_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
         }
         else {
-          throw new Exception('Tous les champs ne sont pas remplis !');
+          Session::setFlash('vous n\'avez pas acces a cette page.','danger');
+          BackendController::editPost($_GET['postId']);
         }
       }else{
         Session::setFlash('vous n\'avez pas acces a cette page.','danger');
@@ -105,9 +111,7 @@ try {
         if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES)){
           BackendController::modifyPost($_GET['postId'], $_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
         }
-        else {
-          throw new Exception('tout les champs n\'on pas été remplis');
-        }
+
       }else{
         Session::setFlash('vous n\'avez pas acces a cette page.','danger');
         LoginController::login();
@@ -119,7 +123,8 @@ try {
           BackendController::deletePost($_GET['postId']);
         }
         else {
-          throw new Exception('Aucun identifiant de commentaire envoyé');
+          Session::setFlash('Aucun identifiant de billet envoyé.','warning');
+          BackendController::backend();
         }
       }else{
         Session::setFlash('vous n\'avez pas acces a cette page.','danger');
@@ -132,7 +137,8 @@ try {
           BackendController::deleteComment($_GET['commentId']);
         }
         else {
-          throw new Exception('Aucun identifiant de commentaire envoyé');
+          Session::setFlash('Aucun identifiant de commentaire envoyé.','warning');
+          BackendController::backend();
         }
       }else{
         Session::setFlash('vous n\'avez pas acces a cette page.','danger');
@@ -145,7 +151,8 @@ try {
           BackendController::authorizedComment($_GET['commentId']);
         }
         else {
-          throw new Exception('Aucun identifiant de commentaire envoyé');
+          Session::setFlash('Aucun identifiant de commentaire envoyé.','warning');
+          FrontendController::post($_GET['postId']);
         }
       }else{
         Session::setFlash('vous n\'avez pas acces a cette page.','danger');

@@ -33,11 +33,11 @@
         <form action="index.php?action=addComment&id=<?= $post->id()?>" method="post" class="mt-3">
           <div class="form-group">
             <label for="author">Nom</label><br />
-            <input type="text" id="author" name="author" class="form-control" placeholder="Entrer votre pseudo"/>
+            <input type="text" id="author" name="author" class="form-control" placeholder="Entrer votre pseudo"/ required>
           </div>
           <div class="form-group">
             <label for="comment">Commentaire</label><br />
-            <textarea id="comment" name="comment" class="form-control" rows="8"></textarea>
+            <textarea id="comment" name="comment" class="form-control" rows="8" required></textarea>
           </div>
           <div>
               <input type="submit" class="btn btn-primary mb-4 mt-2"/>

@@ -100,7 +100,7 @@
         </div>
       </div>
     </div>
-    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Cliquez pour revenir sur le haut de la page"><span class="fa fa-2x fa-chevron-up"></span></a>
+    <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" title="Cliquez pour revenir sur le haut de la page"><span class="fa fa-2x fa-chevron-up"></span></a>
   </footer>
   <!-- /footer -->
 

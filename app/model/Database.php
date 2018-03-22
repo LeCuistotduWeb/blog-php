@@ -3,7 +3,7 @@
  *  class Bdd
  *  Permet la connexion à la  db
  */
-class Database
+Abstract class Database
 {
 
   protected $db;

@@ -38,12 +38,20 @@ class BackendController
     $Session = new Session();
     $postManager = new PostManager();
     $modifyPost = $postManager->addThumbnail($post_thumbnail);
-    $postObj = new Post(array(
-      'id'             => $post_id,
-      'title'          => $title,
-      'content'        => $content,
-      'post_thumbnail' => $post_thumbnail['name']
-    ));
+    if($post_thumbnail['error'] == 0){
+      $postObj = new Post(array(
+        'id'             => $post_id,
+        'title'          => $title,
+        'content'        => $content,
+        'post_thumbnail' => $post_thumbnail['name']
+      ));
+    }else{
+      $postObj = new Post(array(
+        'id'             => $post_id,
+        'title'          => $title,
+        'content'        => $content
+      ));
+    }
     $modifyPost = $postManager->modifyPost($postObj);
     if ($modifyPost === false) {
         Session::setFlash('Impossible de modifier le billet !','danger');

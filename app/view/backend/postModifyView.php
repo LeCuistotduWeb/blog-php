@@ -13,7 +13,7 @@
 
         <div class="form-group">
           <label for="contntBillet">Image mise en avant : </label>
-          <input type="file" name="post_thumbnail" id="post_thumbnail" class="form-control">
+          <input type="file" name="post_thumbnail" id="post_thumbnail" class="form-control" accept=".png, .jpg, .jpeg">
         </div>
         <p>
           Image actuelle : <br>

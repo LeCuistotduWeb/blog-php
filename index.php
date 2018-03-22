@@ -108,7 +108,7 @@ try {
     }
     elseif ($request == 'modifyPost') {
       if(Session::islogged()){
-        if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES)){
+        if(!empty($_GET['postId']) && !empty($_POST['title']) && !empty($_POST['content'])){
           BackendController::modifyPost($_GET['postId'], $_POST['title'], $_POST['content'], $_FILES['post_thumbnail']);
         }
 

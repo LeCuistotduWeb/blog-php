@@ -89,7 +89,8 @@ class PostManager extends Database
     * modifie un billet
     */
     public function modifyPost($postObj) {
-        $modifyPost = [];
+      $modifyPost = [];
+      if($postObj->post_thumbnail() != null){
         $req = $this->db->prepare('UPDATE posts SET title=:title, content=:content, post_thumbnail=:post_thumbnail WHERE id=:id');
         $req->execute(array(
           'id' => $postObj->id(),
@@ -97,7 +98,15 @@ class PostManager extends Database
           'content' => $postObj->content(),
           'post_thumbnail' => $postObj->post_thumbnail()
         ));
-        return $modifyPost;
+      }else{
+        $req = $this->db->prepare('UPDATE posts SET title=:title, content=:content WHERE id=:id');
+        $req->execute(array(
+          'id' => $postObj->id(),
+          'title'   => $postObj->title(),
+          'content' => $postObj->content(),
+        ));
+      }
+      return $modifyPost;
     }
     /**
     * function deletePost
@@ -105,9 +114,9 @@ class PostManager extends Database
     * @param $id
     */
     public function deletePost($id) {
-        $posts = $this->db->prepare('DELETE FROM posts WHERE id = ?');
-        $affectedLines = $posts->execute(array($id));
-        return $affectedLines;
+      $posts = $this->db->prepare('DELETE FROM posts WHERE id = ?');
+      $affectedLines = $posts->execute(array($id));
+      return $affectedLines;
     }
     /**
     * function addThumbnail

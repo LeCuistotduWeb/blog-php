@@ -78,3 +78,17 @@ img::-moz-selection {
   color: $white;
   background: transparent;
 }
+
+.back-to-top {
+    cursor: pointer;
+    position: absolute;
+    bottom: 75px;
+    right: 40px;
+    // display:none;
+}
+.link-homepage{
+  color: white;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}

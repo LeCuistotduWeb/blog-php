@@ -42,7 +42,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-dark bg-dark fixed-top d-flex jusify-content-center" id="mainNav">
       <div class="nav-item">
-        <a class="navbar-brand" href="backend">Administration</a>
+        <a class="navbar-brand" href="listPosts" target="_blank">Aller sur le site</a>
       </div>
       <div class="nav-item navbar-logo">
         <a href="backend"><img src="<?= PUBLICS ;?>img/billet-simple-pour-l-alaska-logo-icon.png" alt="" width="50px"></a>

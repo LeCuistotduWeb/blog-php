@@ -66,6 +66,18 @@ img::-moz-selection {
   color: #fff;
   background: transparent; }
 
+.back-to-top {
+  cursor: pointer;
+  position: absolute;
+  bottom: 75px;
+  right: 40px; }
+
+.link-homepage {
+  color: white;
+  position: absolute;
+  left: 50px;
+  top: 50px; }
+
 header.masthead {
   margin-bottom: 30px;
   background: no-repeat center center;

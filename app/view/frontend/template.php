@@ -48,7 +48,7 @@
       <div class="row">
         <div class="col-lg-10 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1><a href="listPosts"><img src="<?= PUBLICS ;?>img/billet-simple-pour-l-alaska-logo-icon.png" alt="billet simple pour l'alaska logo icon" width="250px"></a><br>
+            <h1><img src="<?= PUBLICS ;?>img/billet-simple-pour-l-alaska-logo-icon.png" alt="billet simple pour l'alaska logo icon" width="250px"><br>
             <?=$heading?></h1>
             <span class="subheading"><?=$subHeading?></span>
           </div>
@@ -56,6 +56,7 @@
       </div>
     </div>
   </header>
+  <?php if(isset($_GET['id'])){echo '<a href="listPosts" class="link-homepage"><span class="fa fa-2x fa-chevron-left"></span></a>';} ?>
   <!-- /header -->
 
   <!-- content -->
@@ -99,6 +100,7 @@
         </div>
       </div>
     </div>
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Cliquez pour revenir sur le haut de la page"><span class="fa fa-2x fa-chevron-up"></span></a>
   </footer>
   <!-- /footer -->
 

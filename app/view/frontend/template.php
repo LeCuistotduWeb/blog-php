@@ -56,7 +56,7 @@
       </div>
     </div>
   </header>
-  <?php if(isset($_GET['id'])){echo '<a href="listPosts" class="link-homepage"><span class="fa fa-2x fa-chevron-left"></span></a>';} ?>
+  <?php if(isset($_GET['id'])){echo '<a href="listPosts" class="link-homepage" title="retour accueil"><span class="fa fa-2x fa-chevron-left"></span></a>';} ?>
   <!-- /header -->
 
   <!-- content -->

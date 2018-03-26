@@ -6,7 +6,7 @@ class PostManager extends Database
 
     /**
     * function getPosts
-    * retourne tout les article
+    * retourne tout les articles
     */
     public function posts($page) {
       $limite = (int) 4;
@@ -129,6 +129,7 @@ class PostManager extends Database
 
         if(in_array($ext,$allow_ext)){ //verifie l'extension sinon message erreur
           move_uploaded_file($post_thumbnail['tmp_name'], "public/img/".$post_thumbnail['name']);
+          return true;
         }else{
           return $post_thumbnail;
         }

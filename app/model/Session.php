@@ -16,7 +16,6 @@
     return isset($_SESSION['auth']);
   }
 
-
  	static public function setFlash($message,$type = 'danger'){
  		$_SESSION['flash'] = array(
  			'message' => $message,
